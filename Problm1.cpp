@@ -6,6 +6,11 @@
 #include <algorithm>
 #include <vector>
 
+// Runtime: O(N)
+// Space: O(N)
+// Algorithm: go to every root-leaf and do target-node.val at every level till leaf. If leaf.val == required target, then add to vector else return.
+// Do that for every possible value and add to vector.
+
 using namespace std;
 
 struct TreeNode {
@@ -16,9 +21,40 @@ struct TreeNode {
 };
 
 
-class Solution{
+class Solution {
 public:
+    vector<vector<int>> pathSum(TreeNode* root, int sum) {
+        vector<vector<int>> retVec; vector<int> currentVec;
+        recurr(root,sum,retVec,currentVec);
 
+        return retVec;
+
+    }
+
+    void recurr(TreeNode* node, int targetsum, vector<vector<int>>& vec, vector<int>& currentVec){
+        if(node == NULL){
+            return;
+        }
+        if(node->left == NULL && node->right == NULL){
+            if(node->val == targetsum){
+                currentVec.push_back(node->val);
+                vec.push_back(currentVec);
+            }
+            return;
+        }
+
+        currentVec.push_back(node->val);
+        vector<int> temp = currentVec;
+
+        int newSum = targetsum - node->val;
+
+        recurr(node->left, newSum, vec, currentVec);
+        currentVec = temp;
+        recurr(node->right, newSum, vec, currentVec);
+        currentVec = temp;
+
+        return;
+    }
 };
 
 int main(){
