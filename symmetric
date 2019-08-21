@@ -1,0 +1,32 @@
+/**
+time O(n)
+Space O(n)
+leetcode yes
+problem no
+
+recursively check both the subtrees of the root but compare left child of left subtree root with right child of right subtree 
+root and vice versa. 
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        
+        boolean result = helper(root,root);
+        return result;
+    }
+    
+    
+    boolean helper(TreeNode rootLeft,TreeNode rootRight )
+    {
+        if(rootLeft == null && rootRight == null) return true;
+        if(rootLeft == null || rootRight == null) return false;
+        if(rootLeft.val != rootRight.val) return false;
+        return (helper(rootLeft.left, rootRight.right) && helper(rootLeft.right, rootRight.left) );
+    }
+}
