@@ -1,5 +1,7 @@
 package binaryTrees;
 
+import java.util.Stack;
+
 /**
  * Time: O(n)
  * Space: O(1)
@@ -18,9 +20,34 @@ public class SymmetricTree {
 		root.right.left = new TreeNode(4);
 		root.right.right = new TreeNode(3);
 		System.out.println(isSymmetric(root));
+		System.out.println(isSymmetricItertive(root));
 	}
 	
-	 public static boolean isSymmetric(TreeNode root) {
+	 private static boolean isSymmetricItertive(TreeNode root) {
+		 if(root == null) return true;
+	        Stack<TreeNode> stack = new Stack<TreeNode>();
+	        stack.push(root.right);
+	        stack.push(root.left);
+	        
+	        while(!stack.isEmpty()){
+	            TreeNode left = stack.pop();
+	            TreeNode right = stack.pop();
+	            if(left == null && right == null) {
+	            		continue;
+	            }
+	            if(right == null || left == null || left.val != right.val) {
+	                return false;
+	            }
+	            //Push nodes in an order that they must be compared
+	            stack.push(left.right);
+	            stack.push(right.left);
+	            stack.push(right.right);
+	            stack.push(left.left);
+	        }
+	        return true;
+	}
+
+	public static boolean isSymmetric(TreeNode root) {
 		if(root == null) return true;
 		return helper(root.left, root.right);
 	 }

@@ -8,7 +8,7 @@ import java.util.List;
  * No. of paths checked during the tree traversal
  * Space: O(Depth of the tree)
  * Leetcode Accepted: yes
- * Problems face: Understanding the backtracking implementation in code for this problem was slightly difficult
+ * Problems faced: Understanding the backtracking implementation in code for this problem was initially difficult
  */
 public class PathSumII {
 
@@ -53,7 +53,7 @@ public class PathSumII {
 		findPaths(root.left, sum-root.val, set, result);
 		findPaths(root.right, sum-root.val, set, result);
 		
-		//Bactracking -- remove the current node from set
+		//Backtracking -- remove the current node from set
 		set.remove(set.size()-1);
 	}
 	
