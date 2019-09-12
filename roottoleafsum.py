@@ -1,10 +1,7 @@
 # leetcode:accepted
 # timecomplexity: o(n)
 # space compexity: O(height of tree)
-# explianation: leaf node means there are no left or roight child to the node.
-# 'So you first find the child node by checking if it hs left child and right child.' .
-# whenever you are going to the next level, say from a->b, you multiply a by 10 and b to it.
-# When you reach a leaf node, return the previous val*10 + node.val,where that node is the lead node
+# explianation: leaf node means there are no left or roight child to the node. 'So you first find the child node by checking if it hs left child and right child.' . whenever you are going to the next level, say from a->b, you multiply a by 10 and b to it. When you reach a leaf node, add the value to the result.
 
 
 # Definition for a binary tree node.
