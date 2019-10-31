@@ -28,3 +28,27 @@ class Solution(object):
             return self.isMirror(root1.left,root2.right) and self.isMirror(root1.right,root2.left)
         
         
+# DFS iterative solution
+#Time complexity -O(N)
+#space complexity-O(H)
+        
+class Solution(object):
+    def isSymmetric(self, root):
+        if not root: return True
+        stack=[]
+        stack.append(root.left)
+        stack.append(root.right)
+        
+        while stack:
+            right=stack.pop()
+            left=stack.pop()
+            if (not right) and (not left): continue
+            if (not right) or (not left) or (right.val!=left.val) : return False
+            stack.append(left.left)
+            stack.append(right.right)
+            stack.append(left.right)
+            stack.append(right.left)
+        return True
+    
+        
+        
