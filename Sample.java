@@ -1,5 +1,5 @@
 // Time Complexity :O(N)
-// Space Complexity :O(N^2)
+// Space Complexity :O(N)
 // Did this code successfully run on Leetcode :Yes
 // Any problem you faced while coding this :Nope. 
 
@@ -12,7 +12,6 @@ class Solution1 {
         return result;
     }
     public void pathSumHelper(TreeNode root,List<Integer> list, List<List<Integer>> result, int sum){
-    	//Base Case
         if(null == root){return;}
         if(null == root.left && null == root.right){
             if(sum == root.val){
@@ -22,11 +21,16 @@ class Solution1 {
             }
             return;
         }
-        List<Integer> leftList = new ArrayList<>(list);
-        leftList.add(root.val);
-        pathSumHelper(root.left,leftList,result,sum-root.val);
-        List<Integer> rightList = new ArrayList<>(leftList);
-        pathSumHelper(root.right,rightList,result,sum-root.val);
+        if(null != root.left){
+            list.add(root.val);
+            pathSumHelper(root.left,list,result,sum-root.val);
+            list.remove(list.size()-1);
+        }
+        if(null != root.right){
+            list.add(root.val);
+            pathSumHelper(root.right,list,result,sum-root.val);
+            list.remove(list.size()-1);
+        }
     }
 }
 
