@@ -26,7 +26,6 @@ But the following [1,2,2,null,3,null,3] is not:
 // Your code here along with comments explaining your approach
 //Approach-There can be two ways to proceed-1. Using DFS(where we will be traversing node towards the depth until leaf node)-with Stack
 //2. Using BFS(where we will cover each nodes at each level)-using queue
-
 //DFS approach can be done both ways-recursive and iterative
 
 class Solution{
