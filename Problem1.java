@@ -30,7 +30,7 @@ Return:
 //Approach-We will be looking for a path(until leaf node) that will provide sum equal to path-sum(given as 22)
 //so we will allocate a list and traverses each node starting from root until it reaches leaf node and simulatenously finding the difference from the target path sum
 //once we reach the last node, if it equals the difference, then we can keep that list as it satisfies our path sum
-//additionally, we will backtrack if the difference is not equal in the leaf node
+//additionally, we will backtrack if the difference is not equal with the leaf node
 
 class Solution{
     public List<List<Integer>> pathSum(TreeNode root, int sum){
