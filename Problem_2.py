@@ -5,8 +5,8 @@ Bruteforce -
   # Memory - O(n)
   
 Optimized - 
-  # Runtime - O()
-  # Memory - O()
+  # Runtime - O(n)
+  # Memory - O(1)
 
 '''
 BRUTEFORCE
@@ -16,6 +16,20 @@ BRUTEFORCE
 
 OPTIMIZED
 
+1) At each level check if left.left == right.right and left.right == right.left for nodes in each level.
+
+              1
+            /   \
+           2     2
+          / \   / \
+         4   5 6   4
+
+2) In the tree above we check the following
+    at level 1 - no comparisions
+    at level 2 - 2 and 2
+    at level 3 - 4 and 4, 5 and 6
+    
+3) Return false if any condition fails
 
 '''
 class Solution:
@@ -47,3 +61,20 @@ class Solution:
                 else:
                     continue
         return True
+  
+  
+  
+class Solution:
+    def isSymmetric_optimized(self, root: TreeNode):
+        if not root:
+            return True
+        
+        return self.helper(root.left,root.right)
+        
+    def helper(self,left,right):
+        if left is None and right is None:
+            return True
+        if left is None or right is None or left.val != right.val:
+            return False
+        
+        return self.helper(left.left,right.right) and self.helper(left.right,right.left)
