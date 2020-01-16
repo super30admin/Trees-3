@@ -3,27 +3,36 @@
 //      isSymmetric() - O(n)
 //      
 // Space Complexity :
-//      isSymmetric() - O(h)
+//      isSymmetric() - O(n)
 //
 // Did this code successfully run on Leetcode : Yes
 // Any problem you faced while coding this : No
 
 class Solution {
-    public boolean isSymmetric(TreeNode root) {
-        return helper(root, root);
-    }
+    Stack<TreeNode> stk = new Stack<>();
     
-    private boolean helper(TreeNode t1, TreeNode t2)
-    {
-        if(t1 == null && t2 == null) return true;
-        if(t1 == null && t2 != null) return false;
-        if(t1 != null && t2 == null) return false;
+    public boolean isSymmetric(TreeNode root) {
+        if(root == null) return true;
         
-        if(t1.val == t2.val)
+        stk.push(root.right);
+        stk.push(root.left);
+        
+        while(!stk.isEmpty())
         {
-            return helper(t1.left, t2.right) && helper(t2.left, t1.right);
+            TreeNode n1 = stk.pop();
+            TreeNode n2 = stk.pop();
+            
+            if(n1 == null && n2 != null) return false;
+            if(n2 == null && n1 != null) return false;
+            if((n1 != null && n2 != null) && (n1.val != n2.val)) return false;
+            if(n1 != null && n2!= null)
+            {
+                stk.push(n1.left);
+                stk.push(n2.right);
+                stk.push(n1.right);
+                stk.push(n2.left);
+            }
         }
-        
-        return false;
+        return true;
     }
 }
