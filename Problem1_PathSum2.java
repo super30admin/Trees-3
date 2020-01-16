@@ -1,7 +1,5 @@
 /************* Time Complexity : O(n) ************/
 /************* Space Complexity : O(n) ************/
-
-
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -14,8 +12,14 @@
 class Solution {
     public List<List<Integer>> pathSum(TreeNode root, int sum) {
         
+        //global scope for resultList and currentList
         List<List<Integer>> resultList = new ArrayList<>();         // resultant list
         List<Integer> currentList = new ArrayList<>();              //each list in the resultant
+
+        //base case
+        if(root == null)
+            return;
+            
         depthSearchSum(root, currentList, resultList, sum);         //recursively calling dfs to find sum and compare
         return resultList;
     }

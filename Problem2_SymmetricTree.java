@@ -13,6 +13,10 @@
 
 class Solution {
     public boolean isSymmetric(TreeNode root) {
+        //base case
+        if(root == null)
+            return true;
+            
         return isMirror(root, root);
     }
     
@@ -24,7 +28,8 @@ class Solution {
         }
         
         //if single subtree is present (therefore not mirrorred)
-        else if(tree1==null || tree2==null){
+        // or if value is not the same
+        else if(tree1==null || tree2==null || tree1.val != tree2.val){
             return false;
         }
         
