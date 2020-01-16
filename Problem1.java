@@ -1,6 +1,6 @@
 // Time Complexity :
 //      n is the number of elements
-//      pathSum() - O(n)
+//      pathSum() - O(n^2)
 //      
 // Space Complexity :
 //      pathSum() - O(h)
@@ -10,7 +10,7 @@
 
 class Solution {
     List<List<Integer>> lili = new ArrayList<>();
-    Map<TreeNode, Integer> mp = new LinkedHashMap();
+    Map<TreeNode, Integer> mp = new LinkedHashMap(); // using to maintain insertion order
     
     public List<List<Integer>> pathSum(TreeNode root, int sum) {
         helper(root, sum);
