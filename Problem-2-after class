@@ -1,0 +1,94 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+ //Time: O(n) : since traversing each node
+ //Space: O(1) : not using any auxillary space, internally its O(height of the tree)
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        if(root==null) return true;
+        //check left and right since root will alone be always symmetric, we need to check for left and right childs 
+        return helper(root.left,root.right);
+    }
+    boolean helper(TreeNode leftSubtree, TreeNode rightSubtree)
+    {
+        //if tree has reach to a leaf node , means there is no false condition and tree is symmetric return true
+        if(leftSubtree==null && rightSubtree==null) return true;
+        if(leftSubtree==null && rightSubtree!=null || leftSubtree!=null && rightSubtree==null) return false;
+       // System.out.print("hello"+leftSubtree.val+ "..."+rightSubtree.val);
+        //don't need to check this conditionsince it will return true as soon as match found at first place, tree might not be symmetric for further childs, to understand, print sysouts
+        //if(leftSubtree.val==rightSubtree.val) return true;
+        //if values are not matching return false;
+        if(leftSubtree.val!=rightSubtree.val)
+            return false;
+        //recursively check for left and right subtree, we are checking left and right 
+        return helper(leftSubtree.left,rightSubtree.right) && helper(leftSubtree.right,rightSubtree.left) ;
+    }
+}
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    /*BFS solution*/
+    public boolean isSymmetric(TreeNode root) {
+    Queue<TreeNode> q=new LinkedList<TreeNode>();
+        if(root==null)
+            return true;
+    q.add(root.left);
+        q.add(root.right);
+        
+        while(!q.isEmpty())
+        {
+            TreeNode templeft=q.remove();
+            TreeNode tempright=q.remove();
+            if(templeft==null && tempright==null)
+                continue;
+            if(templeft==null && tempright!=null || tempright==null && templeft!=null)
+                return false;
+            if(templeft.val!=tempright.val)
+                return false;
+             q.add(templeft.left);
+             q.add(tempright.right);
+             q.add(templeft.right);
+             q.add(tempright.left);             
+        }
+       return true; 
+}}
+//Iterative
+//Time: O(n)
+//Space: O(2*height) ~ O(height) 
+class Solution { 
+    public boolean isSymmetric(TreeNode root) {
+        if(root==null) return true;
+        Stack<TreeNode> st=new Stack<>();
+        st.push(root.left);
+        st.push(root.right);
+        while(!st.isEmpty())
+        {
+            TreeNode right=st.pop();
+            TreeNode left=st.pop();
+            //if we encounter leaf node, we should continue loop to check other nodes as well, we shouldnt return true else loop will exit after first left side traversal
+            if(right==null && left==null) continue;
+            if(right==null || left==null) return false;
+            if(right.val!=left.val)
+                return false;
+            st.push(left.left);
+            st.push(right.right);
+            st.push(left.right);
+            st.push(right.left);
+        }
+        return true;
+}
+}
