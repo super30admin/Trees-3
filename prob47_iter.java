@@ -8,7 +8,7 @@
 
 // Your code here along with comments explaining your approach
 // iterative approach
-// putting values in dfs manner in a stack and checking the symmetricity
+// putting values in dfs manner in a stack and checking the symmetricity by poping and checking two values
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
