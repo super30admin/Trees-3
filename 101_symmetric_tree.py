@@ -56,7 +56,7 @@ class Solution:
     def _helper(self, node: tuple) -> bool:
         left, right = node
         # base
-        if left is None and right is None: continue
+        if left is None and right is None: return True
         if left is None or right is None: return False
         if left.val != right.val: return False
         # logic
