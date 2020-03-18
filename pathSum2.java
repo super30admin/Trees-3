@@ -27,11 +27,11 @@ class Solution {
         if(isLeaf(root) && sum ==0)
             result.add(new ArrayList<>(list));
         else{
-            //root will substract the total value from the sum and check if left and right subtree can make the remaining sum.
+            //parent will substract its value from the sum and ask its childrent if they can make the remaining sum.
             pathSumUtil(root.left, sum, list);
             pathSumUtil(root.right, sum, list) ; 
         }    
-        //while backtracking to parent remove the last element from the list;
+        //while backtracking to parent node, child will remove itself from the list, before exploring different options;
         list.remove(list.size()-1);
     }
     //funtion to check if current node is leaf node
