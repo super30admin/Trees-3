@@ -24,7 +24,7 @@ class Solution:
               if not l and not r:
                   return True
               # If one of the nodes is absent, then it is obviously not symmetric
-              if not l or not r:
+              if not l or not r or l.val != r.val:
                   return False
               # Check if values are same and nodes left of left node and right of right node are same (by recursively calling \
               the function), and right of left node and left of  right node are same (by recursively calling the function)
