@@ -28,7 +28,7 @@ class Solution:
                   return False
               # Check if values are same and nodes left of left node and right of right node are same (by recursively calling \
               the function), and right of left node and left of  right node are same (by recursively calling the function)
-              return l.val == r.val and recursive(l.left, r.right) and recursiverec(l.right, r.left)
+              return recursive(l.left, r.right) and recursiverec(l.right, r.left)  #l.val == r.val 
               
          # return the result using the function above
          return recursive(root.left, root.right)
