@@ -29,11 +29,6 @@ Return:
 
 ]
 
-time- O(N)
-SPACE with out recursion stack- O(N)
-SPACE with recursion stack- O(N + max_depth)
-
-Can you please check my backtracking solution
 """
 
 
@@ -46,14 +41,14 @@ class TreeNode:
 
 class Solution:
     def pathSum(self, root: TreeNode, sum: int):
-        self.output = []         #output list
+        self.output = []
         self.helper(root, [], 0, sum)
         return self.output
 
     def helper(self, root, current_path, current_sum, target):
         if root == None:
             return None
-        if root.left == None and root.right == None and current_sum + root.val == target:  #base case
+        if root.left == None and root.right == None and current_sum + root.val == target:
             #      if current_sum + root.val ==target:
             current_path.append(root.val)
             self.output.append(current_path)
@@ -66,7 +61,7 @@ class Solution:
 
 
 
-#BACKTRACKING  Solution:
+        #BACKTRACKINGclass Solution:
 def pathSum(self, root: TreeNode, sum: int) -> List[List[int]]:
     self.output=[]
     self.helper(root, [], 0,sum)
@@ -82,5 +77,5 @@ def helper(self,root, current_path, current_sum, target):
     self.helper(root.left, current_path+[root.val], current_sum + root.val, target)
     self.helper(root.right, current_path+[root.val], current_sum + root.val, target)
     current_path[0:len(current_path)-1]
-       """
+
 
