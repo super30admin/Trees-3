@@ -40,33 +40,6 @@ class Solution:
         helper(root)
         return res
 
-#Problem 1: Path Sum II
-#Time Complexity: O(n)
-#Space Complexity: O(n)
-#Did it work on leetcode:  yes
-
-
-class Solution:
-    def pathSum(self, root: TreeNode, sum: int) -> List[List[int]]:
-        res=[]
-        #careful, we have to pass in copies and not the array itself
-        #or else any change in any recursion will affect it
-        def helper(root,elements=[],s=0):
-            #edge case
-            if not root:
-                return
-
-            elements.append(root.val)
-            s+=root.val
-            if not root.left and not root.right:
-                if s==sum:
-                    res.append(elements)
-                return
-            helper(root.left,elements[:],s)
-            helper(root.right,elements[:],s)
-        helper(root)
-        return res
-
 
 #Problem 1: Path Sum II
 #Time Complexity: O(n)
