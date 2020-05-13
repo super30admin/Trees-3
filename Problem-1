@@ -1,0 +1,47 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+ /*
+ In this problem, I need check all the paths in tree which matches given sum. So I am using recursive solution to check 
+ each node and its value. At each node traversal, I will sutract the node's value from Sum given and at last I will check the sum 
+ becomes equal to the remaining node and the remaining node is leaf node. 
+ All the nodes must be saved to a list for ongoing path, if the pathg not found then make this temporary list empty to 
+ insert new path nodes.
+ If path found with satisfied conditions then add this temporary list to list of list.
+ */
+class Solution {
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
+        List<List<Integer>> lists = new ArrayList<>();
+        helper(root, sum, new ArrayList<Integer>(), lists);
+        return lists;
+    }
+    
+    /*
+    Time Complexity : O(N^2)
+    Space Complexity : O(N)
+    */
+    public void helper(TreeNode root, int rSum, List<Integer> list, List<List<Integer>> lists){
+        if(root == null)
+            return;
+        list.add(root.val);
+        if(rSum == root.val && root.left == null && root.right == null){
+            lists.add(new ArrayList<>(list));
+        }else{
+            helper(root.left, rSum-root.val, list, lists);
+            helper(root.right, rSum-root.val, list, lists);
+        }
+        list.remove(list.size() - 1);
+    }
+}
