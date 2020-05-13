@@ -1,0 +1,70 @@
+// Time Complexity : O(n)
+// Space Complexity : O(n)
+// Did this code successfully run on Leetcode :Yes
+// Any problem you faced while coding this : No
+
+
+class Solution {
+    
+    /* Recrusive Solution
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
+        List<List<Integer>> result  = new LinkedList<List<Integer>>(); // to store final result
+        List<Integer> currentResult  = new LinkedList<Integer>(); // to store current result
+        pathsum(root,sum,currentResult,result); // recursive function call
+        return result;  // return result
+    }
+    
+    public void pathsum(TreeNode root, int sum, List<Integer> currentResult,List<List<Integer>> result)
+    {
+        if(root == null) return;  // if root is null return 
+        currentResult.add(new Integer(root.val)); // else root value to current list
+        
+        if(root.left == null && root.right == null && sum == root.val)
+        // if root has no child and till now the sum is equal to the root.val add it to result set and remove from current list and return 
+        { result.add(new LinkedList(currentResult));
+          currentResult.remove(currentResult.size()-1);
+          return;
+        }
+         else{  // left and right traversal from root
+             pathsum(root.left,sum-root.val,currentResult,result);
+             pathsum(root.right,sum-root.val,currentResult,result);
+         }
+         // remove  last value from current list
+        currentResult.remove(currentResult.size()-1);
+    }
+    
+    */
+    
+    /* Iterative approach 
+        List<List<Integer>> res = new ArrayList<>();  // store final result
+        List<Integer> path = new ArrayList<>();      // to store current path
+        Stack<TreeNode> stack = new Stack<TreeNode>(); // stack for iterative approach
+        int SUM = 0;    
+        TreeNode cur = root;
+        TreeNode pre = null;
+        while(cur!=null || !stack.isEmpty()){  // while stack is not empty and cur is not null
+            while(cur!=null){      // push all the left values  and add to path and sum
+                stack.push(cur);
+                path.add(cur.val);
+                SUM+=cur.val;
+                cur=cur.left;
+            }
+            cur = stack.peek();  // make stack peek as cur and if its right is not null now continue with cur right
+            if(cur.right!=null && cur.right!=pre){
+                cur = cur.right;
+                continue;
+            } 
+            if cur right and left are null and sum == target add the path to list
+            if(cur.left==null && cur.right==null && SUM==sum) 
+                res.add(new ArrayList<Integer>(path));
+  
+            pre = cur;
+            stack.pop();  // pop current
+            path.remove(path.size()-1); // remove current from list
+            SUM-=cur.val; // subtract fron sum
+            cur = null;
+        
+        }
+        return res; // return list
+    */
+}
