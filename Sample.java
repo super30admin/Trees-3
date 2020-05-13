@@ -14,7 +14,7 @@ class Sample {
         }
     }
     
-    // Time Complexity : O(N) N is number of noded
+    // Time Complexity : O(N^2) N is number of nodes
     // Space Complexity : O(H) H is height of the tree
     // Did this code successfully run on Leetcode : Yes
 
