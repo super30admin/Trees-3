@@ -57,4 +57,41 @@ class Sample {
         list.remove(list.size()-1);
         
     }
+
+    // Time Complexity : O(N) N is number of noded
+    // Space Complexity : O(H) H is height of the tree
+    // Did this code successfully run on Leetcode : Yes
+
+
+    // Your code here along with comments explaining your approach
+    /*
+    For symmetric tree
+    1. left of left child is equal to right of right child
+    2. right of left child is equal to left of right child
+    */
+
+    public boolean isSymmetric(TreeNode root) {
+        
+        if(root == null)
+            return true;
+        
+        return helper(root.left, root.right);
+        
+    }
+    
+    private boolean helper(TreeNode leftNode, TreeNode rightNode) {
+        
+        //Base
+        if(leftNode == null && rightNode == null)
+            return true;
+        
+        if(leftNode == null || rightNode == null)
+            return false;
+        
+        //Logic
+        return leftNode.val == rightNode.val 
+                && helper(leftNode.left, rightNode.right)
+                && helper(leftNode.right, rightNode.left);
+        
+    }
 }
