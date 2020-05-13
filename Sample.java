@@ -20,6 +20,12 @@ class Sample {
 
 
     // Your code here along with comments explaining your approach
+    /*
+    1. Maintain list, pathsum  in stack along with tree node.
+    2. Each time add node value in list and into path sum. For leaf nodes check if sum is equal to path sum.
+    3. At the end remove last element from list to continue to next tree traversal.
+    */
+     
 
     private int sum = 0;
     private List<List<Integer>> result = new ArrayList<>();
