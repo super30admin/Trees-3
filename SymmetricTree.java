@@ -24,4 +24,28 @@ class Solution {
         }
         return false;               // If not true then return false
     }
+
+    /*   ITERATIVE:
+
+    public boolean isSymmetric(TreeNode root) {
+        if(root == null) { return true;}
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);                                // Add the root to the queue
+        queue.add(root);
+        while(queue.size() > 0){
+            TreeNode root1 = queue.poll();                          // Root 1 is getting ready to go to left side
+            TreeNode root2 = queue.poll();                          // Root 2 is getting ready to goto right side
+           if(root1 == null && root2 == null){continue;}            // If both are null, we are not done yet!
+            if(root1 == null || root2 == null){return false;}       // If any mismatch on the way => False
+            if(root1.val != root2.val){return false;}
+            queue.add(root1.left);                                  // Push the left node of current node root 1
+            queue.add(root2.right);                                 // Push the right node of current node root 2
+            queue.add(root1.right);                                 // push the right node of current node root 1
+            queue.add(root2.left);                                  // Push the left node of current node root 2..
+            }                                                   // Push the required because we cant come back as we move along. we are checking simultaneously root 1 and root 2
+            return true;
+        }
+    }
+    */
+
 }
