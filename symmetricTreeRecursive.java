@@ -1,5 +1,5 @@
-//time complexity O(n)
-//space complexity O(1)
+//time complexity O(n) where n is the number of nodes
+//space complexity O(h) where h is the space used by recursive stack
 
 /**
  * Definition for a binary tree node.
