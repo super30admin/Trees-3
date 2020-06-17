@@ -1,4 +1,4 @@
-// Time Complexity : O(n). n is the number of nodes in a tree
+// Time Complexity : O(n^2). n is the number of nodes in a tree
 // Space Complexity : O(H). H is the height of the tree
 // Did this code successfully run on Leetcode : Yes
 // Any problem you faced while coding this : No
