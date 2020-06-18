@@ -35,14 +35,18 @@ class Solution {
         prevSum+=node.val;
         
         // A new List for every Node, consisting of the past elements, please correct me wiht a better solution?
-        List<Integer> newList=new ArrayList<>(prevList);
-        newList.add(node.val);
+        //List<Integer> newList=new ArrayList<>(prevList);
+        prevList.add(node.val);
         
         if(node.left==null && node.right==null && prevSum==resultSum)
-           result.add(newList);
+           result.add(new ArrayList<>(prevList));
         
            // Left and Right 
-        helper(node.left,prevSum,newList);
-        helper(node.right,prevSum,newList);
+        helper(node.left,prevSum,prevList);
+        helper(node.right,prevSum,prevList);
+        
+        // Backtrack
+        prevList.remove(prevList.size()-1);
+        
     }
 }
