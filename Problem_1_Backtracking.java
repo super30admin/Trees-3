@@ -1,4 +1,4 @@
-// Time complexity - O(n)
+// Time complexity - O(n^2), if all the possible paths sum is equal to target. A copy of path is created while adding to result list. Hence, O(n * (n/2)) = O(n^2).
 // Space complexity - O(n)
 
 // backtrack by removing the leaf node from path.
