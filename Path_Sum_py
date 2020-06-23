@@ -1,0 +1,45 @@
+//Time Complexity: O(n)
+//Space Complexity: O(n*n)
+Did it run on leetcode: Yes
+
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+
+// Creating a new array at node with the path traversed so far
+/ check if a node is leaf node and check the sum at the node == target. if yes add the path of that node to the result
+class Solution(object):
+    
+    res = None
+    target = None
+    def pathSum(self, root, sum):
+        self.res = []
+        if not root:
+            return []
+        self.target = sum
+        """
+        :type root: TreeNode
+        :type sum: int
+        :rtype: List[List[int]]
+        """
+        self.helper(root,[root.val],root.val)
+        return self.res
+        
+        
+    def helper(self,root,temp,cursum):
+        
+        if not root:
+            return True
+        if(root.left is None and root.right is None and cursum == self.target):
+            
+            self.res.append(temp)
+        if root.left is not None:
+            self.helper(root.left,temp+[root.left.val],cursum+ root.left.val)
+        if root.right is not None:
+            self.helper(root.right,temp+[root.right.val],cursum+root.right.val)
+        
