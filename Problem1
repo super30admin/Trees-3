@@ -1,0 +1,29 @@
+//Time Complexity : O(n)
+// Space Complexity :O(h)
+// Did this code successfully run on Leetcode :Yes
+// Any problem you faced while coding this :No
+
+class Solution {
+public:
+    void helper(TreeNode* root, int sum, int curSum, vector<int> path, vector<vector<int>>& res){
+        if(root==NULL) return;
+        
+        curSum+=root->val;
+        path.push_back(root->val);
+        if(root->left==NULL && root->right==NULL){
+            if(curSum==sum){
+                res.push_back(path);
+            }
+        }
+        helper(root->left, sum, curSum, path, res);
+        helper(root->right, sum, curSum, path, res);
+    }
+    
+    vector<vector<int>> pathSum(TreeNode* root, int sum) {
+        vector<vector<int>> res;
+        int curSum=0;
+        vector<int> path;
+        helper(root, sum, curSum, path, res);
+        return res;
+    }
+};
