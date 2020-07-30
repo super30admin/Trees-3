@@ -1,7 +1,8 @@
 // Time Complexity :O(n)
 //      n: number of nodes
 // Space Complexity :O(1)
-//      we are just traversing
+//      we are just traversing and not couting Recursion Stack
+//      Other wise O(h) -> height of the tree
 // Did this code successfully run on Leetcode :yes
 // Any problem you faced while coding this :no
 
