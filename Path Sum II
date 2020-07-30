@@ -1,0 +1,26 @@
+Approach 1: Recursive Approach or DFS
+Time Complexity : At each node : (O(1)--> Update sum + O(1) --> compare the sum + O(n)---> Array Copy)*n (Nodes)= O(n*2)
+Space Complexity : Worst case is O(Height of tree * n)=O(N*2) 
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def pathSum(self, root: TreeNode, sum: int) -> List[List[int]]:
+        path=[]  ## Sum is the target 
+        ## Base Case
+        if root==None : 
+            return 
+        def dfs(root,cur_sum,sum,path): ## currentsum is the list at each node
+            if root is None:
+                return
+            ## Logic
+            if root.val==sum and root.left is None and root.right is None:
+                cur_sum=cur_sum+[root.val]
+                path.append(cur_sum)
+            dfs(root.left,cur_sum+[root.val],sum-root.val,path)
+            dfs(root.right,cur_sum+[root.val],sum-root.val,path)
+        dfs(root,[],sum,path)
+        return path
