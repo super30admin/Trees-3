@@ -30,7 +30,7 @@ class TreeNode {
 }
 // Your code here along with comments explaining your 
 // Findig target using DFS and Pre-order traversal
-class Solution {
+class Problem1 {
 
     // global result and target
     List<List<Integer>> result;
