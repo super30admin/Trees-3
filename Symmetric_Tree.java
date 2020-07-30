@@ -29,10 +29,12 @@ public class Symmetric_Tree {
 	}
 
 	private boolean isMirror(TreeNode t1, TreeNode t2){
-		if(t1 == null && t2 == null)
+		if(t1 == null && t2 == null) // when both left and right tree has reached null
 			return true;
-		if(t1 == null || t2 == null)
-			return false;
+
+		//logic
+		if(t1==null || t2 == null || t1.val != t2.val) // if the value of left and right tree are not equal or we have reached end of one of the tree
+			return false; // then tree is not symmetric
 
 		// returns true if two roots have the same value and the right subtree of each tree is a 
 		//mirror reflection of the left subtree of the other tree	
@@ -40,4 +42,4 @@ public class Symmetric_Tree {
 				isMirror(t1.right, t2.left) &&
 				isMirror(t1.left, t2.right);
 	}
-}
+} 	
