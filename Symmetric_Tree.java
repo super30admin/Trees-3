@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 /*****************************************Recursive**********************************/
 // Time Complexity :O(n), we traverse the entire input tree once
 // Space Complexity : O(h), height of the tree
@@ -10,7 +12,7 @@
  * The right subtree of each tree is a mirror reflection of the left subtree of the other tree.*/
 
 //Definition for a binary tree node.
-/*class TreeNode {
+class TreeNode {
 	int val;
 	TreeNode left;
 	TreeNode right;
@@ -21,7 +23,7 @@
 		this.left = left;
 		this.right = right;
 	}
-}*/
+}
 
 public class Symmetric_Tree {
 	public boolean isSymmetric(TreeNode root) {
@@ -43,3 +45,44 @@ public class Symmetric_Tree {
 				isMirror(t1.left, t2.right);
 	}
 } 	
+
+
+/*There is iterative solution as well i.e. 
+ * we can store the right child of right child of a node then left child of left child of a node and 
+ * then right child of left child of a node and at last left child of right child of a node in the stack 
+ * thenwe will be popping them and check if they are coming out to be equal or not till the time stack is not empty and 
+ * in the end we can return the computed result accordingly.*/
+
+class Solution {
+	public boolean isSymmetric(TreeNode root) {
+		if(root==null) return true;
+
+		Stack<TreeNode> stack = new Stack<>();
+
+		stack.push(root.right);
+
+		stack.push(root.left);
+
+		while(!stack.isEmpty()){
+
+			TreeNode left =stack.pop();
+
+			TreeNode right =stack.pop();
+
+			if(left == null && right == null)
+
+				continue;
+
+			if(left==null || right==null || left.val!=right.val) return false;
+
+			stack.push(right.right);
+
+			stack.push(left.left);
+
+			stack.push(right.left);
+
+			stack.push(left.right);
+		}
+		return true;
+	}
+}
