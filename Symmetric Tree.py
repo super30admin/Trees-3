@@ -1,7 +1,9 @@
-# Time Complexity : O(n) where n is the number of integers present in list
-# Space Complexity : O(n) to store the keys
+# Time Complexity : O(d) depth of the tree
+# Space Complexity : O(d) recursive stack storage
 # Did this code successfully run on Leetcode : yes
 # Any problem you faced while coding this : no
+
+#we recursively iterate each node checking its value, equals and its child values of oppsoite direction are equal.
 
 # Definition for a binary tree node.
 class TreeNode:

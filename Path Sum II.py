@@ -1,7 +1,9 @@
-# Time Complexity : O(n) where n is the number of integers present in list
-# Space Complexity : O(n) to store the keys
+# Time Complexity : O(d) where d is the depth of the tree
+# Space Complexity : O(d) max depth of the tree
 # Did this code successfully run on Leetcode : yes
 # Any problem you faced while coding this : no
+
+
 
 # Definition for a binary tree node.
 class TreeNode:
