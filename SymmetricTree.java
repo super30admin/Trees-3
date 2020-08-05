@@ -13,6 +13,9 @@
  *     }
  * }
  */
+
+//TC: O(n), n: number of nodes
+//SC: O(h), h: height of the tree, (log(n))
 class Solution {
     public boolean isSymmetric(TreeNode root) {
         if(root == null) return true;
