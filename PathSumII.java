@@ -13,6 +13,9 @@
  *     }
  * }
  */
+
+//TC: O(n^2), n: number of nodes, (as we are copying an array (O(n)) at every iteration
+//SC: O(n*h), h: height of the tree, worst case: O(n^2), average: O(n log(n))
 class Solution {
     List<List<Integer>> result; int target;
     public List<List<Integer>> pathSum(TreeNode root, int sum) {
