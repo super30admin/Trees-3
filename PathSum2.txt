@@ -1,0 +1,21 @@
+//T: O(n)
+//S: O(n)
+class Solution {
+public:
+    void helper(TreeNode* root, int sum, vector<vector<int>>& res, vector<int> curr){
+        if(root == nullptr) return;
+        sum-=root->val;
+        curr.push_back(root->val);
+        if(root->left== nullptr && root->right==nullptr && sum==0){res.push_back(curr);}
+        helper(root->left, sum, res, curr);
+        helper(root->right, sum, res, curr);
+    }
+    
+    vector<vector<int>> pathSum(TreeNode* root, int sum) {
+        
+        vector<vector<int>> res;
+        vector<int> curr;
+        helper(root, sum, res, curr);
+        return res;
+    }
+};

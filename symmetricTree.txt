@@ -1,0 +1,28 @@
+//T : O(n)
+//S : O(n)
+class Solution {
+public:
+    bool isSymmetric(TreeNode* root) {
+        if(root == nullptr) return true;
+        queue<TreeNode*> curr;
+        curr.push(root->left);
+        curr.push(root->right);
+        while(!curr.empty()){
+            TreeNode* left = curr.front();
+            curr.pop();
+            TreeNode* right = curr.front();
+            curr.pop();
+            //cout<<left->val<<" "<<right->val<<endl;
+            if(left == nullptr && right == nullptr) continue;
+            if(left == nullptr || right == nullptr) return false;
+            if(left->val != right->val) return false;
+            curr.push(left->left);
+            curr.push(right->right);
+            curr.push(left->right);
+            curr.push(right->left);
+        }
+        
+        return true;
+        
+    }
+};
