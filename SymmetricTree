@@ -1,3 +1,13 @@
+// Time Complexity : O(N)
+// Space Complexity : O(N)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no
+
+
+// Your code here along with comments explaining your approach
+Compare node value of left subtree and right subtree recursively.
+compare p1Left.left = P2Right.right && p1Left.right = P2Right.left
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
