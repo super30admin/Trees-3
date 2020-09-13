@@ -33,7 +33,7 @@
  * }
  */
 
-   class symmetriicTree {
+   class pathSum2 {
 
     public List<List<Integer>> pathSum(TreeNode root, int sum) {
 
