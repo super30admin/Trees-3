@@ -1,6 +1,6 @@
 """
 Problem: 101. Symmetric Tree
-Solution: Recursive approach
+Solution: Recursive approach to iterate left and right subtree starting from root node
 Time Complexity: O(n), all numbers of the binary tree are traversed
 Space Complexity: O(h), h is height, recursive call is bound by the height of the tree
 """

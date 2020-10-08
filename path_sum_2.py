@@ -1,6 +1,7 @@
 """
 Problem: 113. Path Sum II
-Solution:
+Solution: Add list of list output by recursively iterating the tree for left and right subtree of each node
+    - and deleting the last element after all nodes in the path are traversed
 Time Complexity: O(n^2), iterate all the nodes and copy root-to-leaf paths to the output list
 Space Complexity: O(n) considering the space taken by output, O(1) if we don't consider the space taken by output
 """
