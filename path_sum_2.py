@@ -9,38 +9,28 @@ Space Complexity: O(n) considering the space taken by output, O(1) if we don't c
 
 # Definition for a binary tree node.
 class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 
 class Solution:
-    # class variable for output
-    output = []
+    def pathSum(self, root: TreeNode, targetSum: int) -> List[List[int]]:
+        if not root:
+            return []
 
-    def pathSum(self, root, sum):
-        self.helper(root, sum, 0, [])
-        return self.output
+        self.final = []
+        self.helper(root, [root.val], root.val, targetSum)
+        return self.final
 
-    def helper(self, node, target, curr_sum, curr_path):
-        # Base case
-        if node is None:
-            return
+    def helper(self, root, temp, currentSum, targetSum):
+        # Add the output only if its a leaf
+        if root.left is None and root.right is None and currentSum == targetSum:
+            self.final.append(temp)
 
-        # For both leaf and non-leaf nodes
-        curr_path.append(node.val)
-        curr_sum += node.val
+        if root.left is not None:
+            self.helper(root.left, temp + [root.left.val], currentSum + root.left.val, targetSum)
 
-        # Add the output, only if its a lead node
-        if node.left is None and node.right is None and target == curr_sum:
-            # if you directly append curr_path, you'll get empty list
-            # self.output.append(curr_path)
-            self.output.append(list(curr_path))
-        else:
-            # iterate left and right subtree
-            self.helper(node.left, target, curr_sum, curr_path)
-            self.helper(node.right, target, curr_sum, curr_path)
-
-        # After reaching leaf node, remove the last element
-        curr_path.remove(curr_path[-1])
+        if root.right is not None:
+            self.helper(root.right, temp + [root.right.val], currentSum + root.right.val, targetSum)
