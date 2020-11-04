@@ -1,0 +1,28 @@
+# Time Complexity: O(n), n is the num of nodes in the binary tree
+# Space Complexity: O(h^2), h is the height of the binary tree (going through h nodes and initializing a new list of h elements (max) each time. Please confirm if this is right.
+# Did this code successfully run on LeetCode: Yes
+
+# Three line Explanation:
+# 1. When we encounter a node, we add the node's value to the curSum as well as append to a new list
+# 2. Pass this new list along to other recursive functions 
+# 3. When we encounter a leaf, check it's curSum. If equal to sumVal, append to main list.
+
+class Solution:
+    def pathSum(self, root: TreeNode, sumVal: int) -> List[List[int]]:
+        self.result = []
+        self.sumVal = sumVal
+        self.helper(root, 0, [])
+        return self.result
+        
+    def helper(self, root, curSum, li):
+        if root is None:
+            return
+        curSum += root.val
+        li2 = li[:]
+        li2.append(root.val)
+        if curSum == self.sumVal and not root.left and not root.right:
+            self.result.append(li2)
+            return
+        self.helper(root.left, curSum, li2)
+        self.helper(root.right, curSum, li2)
+        return
