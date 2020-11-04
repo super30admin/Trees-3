@@ -1,0 +1,35 @@
+# Time Complexity: O(n)
+# Space Complexity: O(n); recursion space O(h), but list of left side O(n/2) + list of right side O(n/2) = O(max(h, n/2 + n/2)) = O(n)
+# Did this code successfully run on LeetCode: Yes
+
+# Four Line Explanation:
+# 1. Root of the tree doesn't matter
+# 2. Build a list of values following root.left -> root -> root.right traversal for ROOT.LEFT
+# 3. Build a list of values following root.right -> root -> root.left traversal for ROOT.RIGHT
+# 4. Check if the lists are same
+
+class Solution:
+    def isSymmetric(self, root: TreeNode) -> bool:
+        if root is None:
+            return True
+        result1 = self.helper1(root.left, [])
+        result2 = self.helper2(root.right, [])
+        return result1 == result2
+        
+    def helper1(self, root, li):
+        if root is None:
+            li.append(None)
+            return
+        li.append(root.val)
+        self.helper1(root.left, li)
+        self.helper1(root.right, li)
+        return li
+            
+    def helper2(self, root, li):
+        if root is None:
+            li.append(None)
+            return
+        li.append(root.val)
+        self.helper2(root.right, li)
+        self.helper2(root.left, li)
+        return li   
