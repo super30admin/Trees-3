@@ -1,0 +1,31 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    # Recursive Solution : DFS Left Root Right (Preorder Traversal)
+    # 1. Iterate through the tree and in each iteration keep track of nodes traversed so far and subtract the remaining sum. 
+    # 2. When Remaining sum will be equal to leaf node then store that path in the output list
+    
+    # Time Complexity: O(N)
+    # Space Complexity: O(1) excluding the output list
+    
+    def pathSum(self, root: TreeNode, sum: int) -> List[List[int]]:
+        return self.pathSumHelper(root,sum,[],[])
+        
+    def pathSumHelper(self,root,remaining_sum,output_list,curr_list):
+        if root is None:
+            return
+        if root.left is None and root.right is None:
+            if remaining_sum == root.val:
+                curr_list.append(root.val)
+                output_list.append(curr_list)
+            return output_list
+        remaining_sum -= root.val
+        self.pathSumHelper(root.left,remaining_sum,output_list,curr_list +[root.val])
+        self.pathSumHelper(root.right,remaining_sum,output_list,curr_list +[root.val])
+        return output_list
+        
