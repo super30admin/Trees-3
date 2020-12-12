@@ -1,0 +1,26 @@
+// Time Complexity : O(N)
+// Space Complexity : O(N)
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : No
+
+SOLUTION: Idea is to check boolean result for (LL,RR) && (LR,RL) by simultaneously checking left and right child of root.
+
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        if(root==null){
+            return true;
+        }
+        return helper(root,root);
+    }
+    
+    private boolean helper(TreeNode l, TreeNode r){
+        if(l==null && r==null){
+            return true;
+        }
+        if(l==null || r==null || l.val != r.val){
+            return false;
+        }
+        // System.out.println(" left " + l.val + " right " + r.val);
+        return helper(l.left, r.right) && helper(l.right, r.left);
+    }
+}

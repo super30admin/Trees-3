@@ -1,0 +1,44 @@
+// Time Complexity : O(N)
+// Space Complexity : O(1)
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : No
+
+// Your code here along with comments explaining your approach: Idea is to create helper function with root, currSum,sum,lst,lst<ls>;
+//Logic to check if tempSum==target and it's a leaf node , create it's NEW list and add to final result;
+//IMP: lst.remove(lst.size()-1) --> To remove the last element from list  i.e traverse back to upper level in tree after checking the leaf Node
+
+class Solution {
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
+        List<Integer> lst = new ArrayList<>();
+        List<List<Integer>> result = new ArrayList<>();
+     
+        if(root==null){
+            return result;
+        }
+        helper(root,0, sum, lst, result);
+        return result;
+    }
+
+    public void helper(TreeNode root, int tempSum, int sum, List<Integer> lst, List<List<Integer>> result){
+        if(root==null){
+            return;
+        }
+        lst.add(root.val);
+        tempSum += root.val;
+        if(root.left==null && root.right==null){
+            if(tempSum == sum){
+                result.add(new ArrayList<>(lst));
+                // return;
+            }
+        }
+            // if(root.left!=null){
+            //     System.out.println( root.left.val + " | " +  tempSum  + " | " +lst+ " | " +result);
+            // }
+         helper(root.left, tempSum, sum, lst, result); 
+            // if(root.right!=null){
+            //     System.out.println( root.right.val + " | " +  tempSum  + " | " +lst+ " | " +result);
+            // }
+        helper(root.right, tempSum, sum, lst, result);    
+        lst.remove(lst.size() - 1);   //IMPORTANT. -> To go back to previous level after checking leaf node i.e to 11 from 7 & 2.
+    }
+}
