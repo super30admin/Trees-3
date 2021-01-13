@@ -1,0 +1,31 @@
+/*
+TC: O(n^2) We are going to every node twice, from top and then bottom to change path and calculate sum
+SC: O(h) due to implicity recursion stack
+thought: The trick in these path sum or path ways problems
+1. we have to store initial state of the ds involved along with tree..in this instance its arraylist
+2. the sum or path always stops a node prior to leaf as the path needs to be till leaf
+3. modify the state as per the previous state of ds..
+ */
+
+class PathSum2{
+
+
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
+        List<List<Integer>> res = new ArrayList<>();
+        helper(res,root,sum,new ArrayList<Integer>());
+        return res;
+    }
+
+    private void helper(List<List<Integer>> res, TreeNode root,int sum, ArrayList<Integer> curr){
+        if (root == null) return;
+        curr.add(root.val);
+        if (root.val == sum && root.left == null && root.right == null){
+            res.add(new ArrayList<>(curr));
+        }
+        else{
+            helper(res,root.left,sum - root.val,curr);
+            helper(res,root.right,sum - root.val,curr);
+        }
+        curr.remove(curr.size()-1);
+    }
+}
