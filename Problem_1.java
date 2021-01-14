@@ -1,10 +1,12 @@
-// Time Complexity :
-// Space Complexity :
+// Time Complexity :O(n)
+// Space Complexity :O(n)
 // Did this code successfully run on Leetcode :
 // Any problem you faced while coding this :
 
 
 // Your code here along with comments explaining your approach
+//I keep on inserting the value for the node at every recursive cal.
+//As the arraylist is passed by reference so i am also removing the lat element from the arraylist.
 
 /**
  * Definition for a binary tree node.
