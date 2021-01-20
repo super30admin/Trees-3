@@ -35,7 +35,7 @@ class Solution:
         if root.left == None and root.right == None:
             if sum(sumList) == self.target:
                 # print(sumList)
-                self.allpaths.append(copy.deepcopy(sumList))
+                self.allpaths.append(copy.copy(sumList))
                 
         self.helper(root.left, currSum, sumList)
         self.helper(root.right, currSum, sumList)
