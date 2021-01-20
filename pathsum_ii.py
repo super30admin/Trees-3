@@ -16,8 +16,12 @@ class Solution:
         Space Complexicity: O(h), where h is height of the tree
         
         Approach:
-        1. 
+        1. Maintain a list of global variable (for result)
+        2. Recursive call for keeping sum and current list from the root of the tree
+        3. Create a copy of the sub-array if the sum matches with the target and append to the results
+        4. In each recursive call pop the elements from the list (optimizes time complexicity)
         """
+        
         if root == None: return []
         self.allpaths = []
         self.target = targetSum
