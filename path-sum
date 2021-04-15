@@ -1,0 +1,61 @@
+// Time Complexity :O(n)
+// Space Complexity :O(h) - recursive stack will have maximum of h- height of tree elements 
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this :
+deciding backtracking where to copy
+
+// Your code here along with comments explaining your approach
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    List<List<Integer>> result;
+
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        result = new ArrayList<>();
+        if(root == null)
+            return result;
+
+        helper(root, targetSum, 0, new ArrayList<>( ),"start");
+
+        return result;
+    }
+
+    private void helper(TreeNode root, int targetSum, int currSum, List<Integer> path, String side)
+    {
+        //System.out.println(path+" currSum = "+currSum+" side = "+side);
+        //base case
+        if(root == null)
+            return;
+
+        //logic 
+        currSum += root.val;
+        path.add(root.val);
+        if(root.right == null && root.left == null)
+        {
+            if(currSum == targetSum)
+            {
+               result.add(new ArrayList<>(path));
+            }
+
+        }
+        helper(root.left, targetSum, currSum, path, "left");
+        helper(root.right, targetSum, currSum, path, "right");
+        if(!path.isEmpty())
+            path.remove(path.size()-1);
+
+       // path.remove(path.size()-1);
+    }
+}
