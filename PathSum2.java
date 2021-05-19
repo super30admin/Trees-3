@@ -1,3 +1,6 @@
+/* Time complexity: O(N)
+Space complexity: O(1)
+*/
 class Solution {
     int target=0;
     List<List<Integer>> result = new ArrayList<>();
