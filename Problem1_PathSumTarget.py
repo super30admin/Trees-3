@@ -90,4 +90,5 @@ class Solution:
                     # We went right and did some things, imagine we had only
                     # 1 node to the right, we would have to pop the traversed
                     # nodes list because we will now go up 1 level in recursion
+                    # This removal can be considered backtracking
                     traversed_nodes.pop()
