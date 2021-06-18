@@ -1,4 +1,6 @@
 class Solution {
+      // Time Complexity: O(n^2)
+    // Space Complexity: O(n)
     List<List<Integer>> res;
     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
         res = new ArrayList<>();
