@@ -1,4 +1,6 @@
 class Solution {
+    // Time Complexity: O(n)
+    // Space Complexity: O(n)
     public boolean isSymmetric(TreeNode root) {
         return helper(root, root);
     }
