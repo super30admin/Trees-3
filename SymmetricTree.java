@@ -3,6 +3,8 @@
 // Did this code successfully run on Leetcode : Yes
 // Any problem you faced while coding this : No
 
+
+// Recursive solution - DFS
 class Solution {
     public boolean isSymmetric(TreeNode root) {
         return helper(root.left, root.right);
@@ -29,3 +31,32 @@ class Solution {
     
 }
 
+// Iterative solution - BFS
+
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        Queue<TreeNode> q1 = new LinkedList<>();
+        q1.add(root.left);
+        q1.add(root.right);
+        while(!q1.isEmpty()){
+            TreeNode n1 = q1.poll();
+            TreeNode n2 = q1.poll();
+            
+            if(n1 == null && n2 == null)
+                continue;
+            if(n1 == null || n2 == null)
+                return false;
+            if(n1.val != n2.val)
+                return false;
+            
+            q1.add(n1.left);
+            
+            q1.add(n2.right);
+           
+            q1.add(n1.right);
+            
+            q1.add(n2.left);
+        }
+        return true;
+    }
+}
