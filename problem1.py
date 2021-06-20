@@ -5,10 +5,12 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    result =[]
+    
     def pathSum(self, root: TreeNode, targetSum: int) -> List[List[int]]:
         
-        def helper(root, path, currSum):
+        self.result = []
+        
+        def helper(root, currSum, path):
             #Base case
             if root == None: return 
             
@@ -17,9 +19,9 @@ class Solution:
             currSum += root.val
             
             #Driver code - Recursion Calls
-            helper(root.left, path, currSum)
+            helper(root.left, currSum, path)
             #stack.pop() after left rec call is complete
-            helper(root.right, path, currSum)
+            helper(root.right, currSum, path)
             #stack.pop() after right rec call is complete
             
             #After both calls we can check if they are root nodes and sum until here equals out targetSum.
@@ -30,7 +32,7 @@ class Solution:
             #Backtracking
             path.pop()
             
-        helper(root, [], 0)
+        helper(root, 0, [])
         return self.result
         
 #Time complexity is O(n) space complexity O(h)
