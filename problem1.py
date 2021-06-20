@@ -28,7 +28,6 @@ class Solution:
                     self.result.append(path.copy())
             
             #Backtracking
-            currSum -= root.val
             path.pop()
             
         helper(root, [], 0)
