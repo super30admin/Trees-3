@@ -1,5 +1,7 @@
 """
 Approach-1: Use a new path copy for every recursive call
+TC: O(n)
+SC: O(n^2)
 """
 class Solution:
 def __init__(self):
@@ -28,6 +30,8 @@ def helper(self, root, localsum, curr):
 
 """
 Approach-2: Use a new path copy for storing the result only. Then backtrack.
+TC: O(n)
+SC: O(n)
 """
 
 class Solution:
