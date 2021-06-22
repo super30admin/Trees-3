@@ -1,5 +1,5 @@
 //Time complextity - O(n)
-//Space complexity - O(1)
+//Space complexity - O(n) //height of the tree
 // Did this code successfully run on Leetcode : yes
 // Any problem you faced while coding this : no
 
