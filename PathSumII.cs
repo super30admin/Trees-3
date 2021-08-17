@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Tree
 {
+    //previous pull request failed
     class PathSumLC
     {
         //Time Complexity: O(n)

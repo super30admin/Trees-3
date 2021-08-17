@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Tree
 {
+    //Previous pull request failed
     class IsSymmetricTree
     {
         //Time Complexity: O(n)
