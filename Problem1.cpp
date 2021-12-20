@@ -1,5 +1,5 @@
 // Time Complexity :O(n)
-// Space Complexity :O(n)
+// Space Complexity :O(n) amortized
 // Did this code successfully run on Leetcode :yes
 
 class Solution {
