@@ -67,8 +67,9 @@ var isSymmetric = function (root) {
   const queue = [root.left, root.right];
 
   while (queue.length) {
-    let leftRoot = queue.shift();
-    let rightRoot = queue.shift();
+    let rightRoot = queue.pop();
+    let leftRoot = queue.pop();
+
     if (
       (leftRoot === null && rightRoot !== null) ||
       (rightRoot === null && leftRoot !== null) ||
