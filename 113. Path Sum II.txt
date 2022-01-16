@@ -1,0 +1,51 @@
+// Time Complexity : O(n)
+// Space Complexity : O(h)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no
+
+
+// Your code here along with comments explaining your approach
+We need to find the root to leaf which sums up the targetSum, so we need to maintain the curent sum..we need to return the list of nodes which make up the sum so we maintain list as well..but a problem here is that the list is stored by reference, so in backtracking when recursion flows from bottom to top back we keep on removing all the items..thwe solution on this is that when we find the path matching taretSum, we make new list and store our current list in RESULT list
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    List<List<Integer>> result = new ArrayList<>();
+    int target = 0;
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        target = targetSum;
+        helper(root, 0, new ArrayList<>());
+        return result;
+    }
+    
+    public void helper(TreeNode root, int currSum, List<Integer> path){
+        //base
+        if(root==null) return;
+        //logic
+        currSum=currSum+ root.val;
+        //action
+        path.add(root.val);
+        if(root.left==null && root.right==null && currSum==target){
+            result.add(new ArrayList<>(path));
+            }
+            
+            helper(root.left, currSum, path);
+            helper(root.right, currSum, path);
+            //remove if both left and right are visited(that means left right are null or this node is useless)
+            path.remove(path.size()-1);
+        
+    }
+}
