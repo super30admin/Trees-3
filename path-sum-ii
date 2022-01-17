@@ -1,0 +1,30 @@
+//Tc: O(n)
+//sc: O(h)
+//passed on leetcode: yes
+class Solution {
+    List<List<Integer>> result;
+    int target;
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        result = new ArrayList<>();
+        target = targetSum;
+        helper(root, 0, new ArrayList<>());
+        return result;
+    }   
+    private void helper(TreeNode root, int currSum, List<Integer> path) {
+        //base
+        if (root ==null) return;
+        //logic
+        currSum += root.val;
+        path.add(root.val);
+        helper(root.left,currSum,path);
+        helper(root.right,currSum, path);
+        if (root.left == null && root.right ==null) {
+            if (currSum == target) { //when it 2 recursive call is complete, if the same list is used, it will have 5,4,11,7,2 but since we are backtracking, 7 will be removed, when 2 is reached, target is checked and if it matches, 2 will be added to path and path will be added to result
+                result.add(new ArrayList<>(path));
+            }
+        }
+        //backtacking
+        path.remove(path.size() -1);
+        
+    }
+}
