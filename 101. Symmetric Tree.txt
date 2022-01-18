@@ -1,0 +1,44 @@
+// Time Complexity :
+// Space Complexity :
+// Did this code successfully run on Leetcode :
+// Any problem you faced while coding this :
+
+
+// Your code here along with comments explaining your approach
+
+we want t check left tree each time with righ tree. left side of one with right side of oteher, so we make the calls accordingly.
+in iterative approach, we can start with adding root.left and root.rght to the stack and popping both and coomparing their values along with null cases.. and then we add both children of left and right to stack in same order as we pushed firs troot.left and root.right so that we compare right trees.
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        return helper(root.left, root.right);
+    }
+    
+    public boolean helper(TreeNode LTree, TreeNode RTree){
+        
+        if(LTree==null && RTree==null) return true;
+        if(LTree==null || RTree==null) return false;
+        
+        if(LTree.val != RTree.val) return false;
+        
+        boolean x= helper(LTree.left, RTree.right);
+        boolean y= helper(LTree.right, RTree.left);
+        
+        return x && y;
+    }
+}
