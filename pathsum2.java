@@ -13,6 +13,9 @@
  *     }
  * }
  */
+
+Time:O(n);
+ Space:O(1); As we are returing same arary;
 class Solution {
     List<List<Integer>> result=new ArrayList<>();
 
