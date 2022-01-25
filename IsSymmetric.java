@@ -1,3 +1,7 @@
+// Time Complexity : O(n)
+// Space Complexity : O(h)
+// Did this code successfully run on Leetcode : Yes
+
 public class IsSymmetric {
 
     static class TreeNode {
