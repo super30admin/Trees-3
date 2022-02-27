@@ -20,4 +20,34 @@ class Solution {
         return isSymmetric(left.left, right.right) &&
             isSymmetric(left.right, right.left) && (left.val == right.val);
     }
+
+    // Time Complexity : o(n) n = number of nodes
+    // Space Complexity :  o(n) n = number of nodes
+    // Level order approach : same logic as above
+    public boolean isSymmetric(TreeNode root) {
+
+      Queue<TreeNode> q = new LinkedList<>();
+      q.add(root.left);
+      q.add(root.right);
+
+      while(!q.isEmpty()){
+
+          TreeNode left = q.remove();
+          TreeNode right = q.remove();
+
+          if(left == null && right == null) continue;
+
+          if( (left == null && right != null ) || (left != null && right == null) || (left.val != right.val)) return false;
+
+          q.add(left.left);
+          q.add(right.right);
+          q.add(left.right);
+          q.add(right.left);
+
+      }
+
+      return true;
+
+
+    }
 }
