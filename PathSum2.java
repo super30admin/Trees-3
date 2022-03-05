@@ -32,7 +32,7 @@ public class PathSum2 {
 
   public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
     List<List<Integer>> result = new ArrayList<>();
-    pathSum(root, targetSum, new ArrayList(), result);
+    pathSum(root, targetSum, new ArrayList<>(), result);
     return result;
   }
 
@@ -47,7 +47,7 @@ public class PathSum2 {
       result.add(path);
     }
 
-    pathSum(root.left, sum - root.val, new ArrayList(path), result);
-    pathSum(root.right, sum - root.val, new ArrayList(path), result);
+    pathSum(root.left, sum - root.val, new ArrayList<>(path), result);
+    pathSum(root.right, sum - root.val, new ArrayList<>(path), result);
   }
 }
