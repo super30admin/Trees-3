@@ -1,0 +1,2 @@
+public class PathSum2 {
+}
