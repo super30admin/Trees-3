@@ -1,0 +1,42 @@
+//https://leetcode.com/problems/path-sum-ii/
+// Time Complexity :O(n)
+// Space Complexity :O(n)
+// Did this code successfully run on Leetcode :Yes
+// Any problem you faced while coding this :
+
+
+// Your code here along with comments explaining your approach
+//Recursion stack
+class Solution {
+    List<List<Integer>> res;
+    List<Integer> path;
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        res = new ArrayList<>();
+        path = new ArrayList<>();
+        if(root == null ) return res;
+        
+        helper(root , 0, targetSum);
+        return res; 
+        
+    }
+    
+    private void helper(TreeNode root , int currSum,int targetSum)
+    {
+        if(root == null) return;
+        
+        currSum = currSum+ root.val;
+        path.add(root.val);
+        
+        if(root.left == null && root.right == null)
+        {
+            if(currSum == targetSum)
+            {
+                res.add(new ArrayList<>(path));
+            }
+        }
+       helper(root.left , currSum, targetSum); 
+       helper(root.right , currSum, targetSum);
+        path.remove(path.size()-1);
+        
+    }
+}
