@@ -1,0 +1,29 @@
+// Time Complexity : O(n2)
+// Space Complexity : O(n)
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : No
+
+
+// Your code here along with comments explaining your approach
+
+class Solution {
+    List<List<Integer>> result;
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        result = new ArrayList<>();
+        helper(root, 0, targetSum, new ArrayList<>());
+        return result;
+    }
+    
+    private void helper(TreeNode root, int curr_sum, int targetSum, List<Integer> path){
+        if(root==null){
+            return;
+        }
+        path.add(root.val);
+        curr_sum += root.val;
+        if(curr_sum==targetSum){
+            result.add(path);
+        }
+        helper(root.left, curr_sum, targetSum, new ArrayList<>(path));
+        helper(root.right, curr_sum, targetSum, new ArrayList<>(path));
+    }
+}
