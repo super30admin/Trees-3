@@ -6,21 +6,6 @@
 //while traversing, we keep making the number and when at leaf our number becomes equal to required number,
 //we store our path in result, to avoid returning same list we create new list and store copy of our path in it
 
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- * int val;
- * TreeNode left;
- * TreeNode right;
- * TreeNode() {}
- * TreeNode(int val) { this.val = val; }
- * TreeNode(int val, TreeNode left, TreeNode right) {
- * this.val = val;
- * this.left = left;
- * this.right = right;
- * }
- * }
- */
 class Solution {
     List<List<Integer>> result = new ArrayList<>();
 
