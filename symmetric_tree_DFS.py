@@ -1,3 +1,7 @@
+#Time Complexity : O(n)
+#Space Complexity : O(h) h-> height of tree
+#Did your code run on leetcode : yes
+
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
