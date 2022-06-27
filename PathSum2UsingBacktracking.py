@@ -26,6 +26,8 @@ class Solution(object):
         self.helper(root.right, targetSum, result, currentsum, path)
         
         #Backtrack
+        
+        #Use .pop() instead of .remove()...the later does not deletes the last element, it deletes the first occurance
         path.pop()
         return result
         
