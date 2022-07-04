@@ -66,7 +66,7 @@ class Solution {
         }
         
         
-        // Call the pathSumHelper left and right nodes to get sum from rest of the nodes..
+        // Call the pathSumHelper left and right nodes to get sum from rest of the nodes...
         if(node.left != null)
             pathSumHelper(node.left, pathSum,  new ArrayList<>(path));
         
