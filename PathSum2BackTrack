@@ -1,0 +1,83 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    
+    /**
+     * Visit every node using DFS or BFS and maintain the sum till the leaves, 
+     * at the leaf node if the sum stored till the point is equal to target
+     * add to the global list.
+     *
+     * Time complexity : Visit every node once. O(n)
+     * Space complexity : Recursive stack space O(n)
+     *
+     *
+     */
+    
+    private int target = 0;
+    private List<List<Integer>> result = new ArrayList<>();
+    
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+                
+        // Store it globally so we need not pass around a constant all the time through recursion
+        target = targetSum;
+        
+        
+        pathSumHelper(root, 0, new ArrayList<Integer>());
+        
+        return result;
+        
+    }
+    
+    
+    private void pathSumHelper(TreeNode node, int pathSum, List<Integer> path) {
+        
+        
+        if(node == null) return;
+        
+        
+        // Sum till the moment including current node.
+        pathSum = pathSum + node.val;
+        
+        // add current node to the path
+        //Action
+        path.add(node.val);
+        
+        // Leaf node, add to the result if current sum == target
+        if(node.left == null && node.right == null) {
+            
+            if(pathSum == target) {
+                // Since this path adds up to the target put it in the result
+                // we are adding path as new arraylist, as the elements added would be backtracked.
+                result.add(new ArrayList<>(path));
+                //** IMP -> Don't return here as we need to backtrack. 
+            }
+        }
+        
+        
+        // Call the pathSumHelper left and right nodes to get sum from rest of the nodes..
+        if(node.left != null)
+            pathSumHelper(node.left, pathSum,  path);
+        
+        if(node.right != null)
+            pathSumHelper(node.right, pathSum,  path);
+    
+        //st.pop()
+        // Backtrack, action. Meaning we are undoing the action. 
+       path.remove(path.size()-1);
+    
+    }
+    
+}
