@@ -25,27 +25,24 @@ Solution 1- Recursive
  */
 class Solution {
     public boolean isSymmetric(TreeNode root) {
-        if(root == null)
+        if(root == null || (root.left == null && root.right == null))
             return true;
         
-        return helper(root.left, root.right);
+        return checkForSymmetric(root, root);
     }
     
-    private boolean helper(TreeNode left, TreeNode right)
+    public boolean checkForSymmetric(TreeNode p, TreeNode q)
     {
-        // base case
-        if(left == null && right == null)
+        if(p == null && q == null)
             return true;
-        if(left == null && right != null)
-            return false;
-        if(left != null && right == null)
-            return false;
-        if(left.val != right.val)
+        
+        if(p == null || q == null)
             return false;
         
+        if(p.val != q.val)
+            return false;
         
-        // logic
-        return helper(left.left, right.right) && helper(left.right, right.left);
+        return checkForSymmetric(p.left, q.right) && checkForSymmetric(p.right, q.left);
     }
 }
 
