@@ -1,0 +1,38 @@
+//Time Complexity : O(n) 
+//Space Complexity : O(1) 
+// Did this code successfully run on Leetcode : Yes
+
+
+class Solution {
+    
+    public List<List<Integer>> res = new ArrayList<List<Integer>>();
+    public List<List<Integer>> pathSum(TreeNode root, int t) 
+    {
+        
+        List<Integer> arr = new ArrayList<Integer>();
+        recurr(root,0,t,arr);
+        return res;
+    }
+    
+    public void recurr(TreeNode root, int s, int t, List<Integer> arr)
+    {
+        //System.out.println(arr);
+        if(root == null)
+        {
+            return;
+        }
+        s = s+root.val;
+        arr.add(root.val);
+        if(s==t&&root.left==null && root.right==null)
+        {
+            res.add(new ArrayList<Integer>(arr));
+        }
+        
+            
+            recurr(root.left, s,t,arr);
+            recurr(root.right, s,t,arr);
+            arr.remove(arr.size()-1);
+            
+            
+    }
+}
