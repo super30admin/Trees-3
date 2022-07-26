@@ -1,5 +1,5 @@
-// Time Complexity: O(N), N = total number of nodes
-// Space Complexity: O(N), N = total number of nodes
+// Time Complexity: O(N), N = total number of nodes in the tree
+// Space Complexity: O(H), H = height of the tree, recursive stack space
 
 class Solution {
     List<List<Integer>> result;
