@@ -1,0 +1,27 @@
+// Time Complexity: O(N), N = total number of nodes
+// Space Complexity: O(N), N = total number of nodes
+
+class Solution {
+    List<List<Integer>> result;
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        if(root == null)
+            return new ArrayList<>();
+        
+        result = new ArrayList<List<Integer>>();
+        helper(root, targetSum, 0, new ArrayList<>());
+        return result;
+    }
+    private void helper(TreeNode root, int targetSum, int currSum, List<Integer> path) {
+        // base case
+        if(root == null) 
+          return;
+        // logic
+        path.add(root.val);
+        currSum += root.val;
+        helper(root.left, targetSum, currSum, path);
+        if(root.left == null && root.right == null && currSum == targetSum) 
+            result.add(new ArrayList<>(path));
+        helper(root.right, targetSum, currSum, path);
+        path.remove(path.size()-1);
+    }
+}
