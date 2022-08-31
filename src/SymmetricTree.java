@@ -27,10 +27,10 @@ class SymmetricTree {
         return isMirror(root,root);
     }
     private boolean isMirror(TreeNode root1, TreeNode root2) {
-        if(root1 == null && root2 == null) return true;
-        if(root1 == null || root2 == null) return false;
+        if(root1 == null && root2 == null) return true;                                                           // leaf then mirror
+        if(root1 == null || root2 == null) return false;                                                          // only one child then not mirror
 
-        return root1.val == root2.val && isMirror(root1.left,root2.right) && isMirror(root1.right,root2.left);
+        return root1.val == root2.val && isMirror(root1.left,root2.right) && isMirror(root1.right,root2.left);    // check for exact mirror
     }
 }
 
@@ -50,11 +50,11 @@ class SymmetricTree {
 //            TreeNode actual = q.poll();
 //            TreeNode mirror = q.poll();
 //
-//            if(actual == null && mirror == null) {
+//            if(actual == null && mirror == null) {                                                 // parent was leaf node
 //                continue;
 //            }
 //
-//            if(actual == null || mirror == null || actual.val != mirror.val) {
+//            if(actual == null || mirror == null || actual.val != mirror.val) {                     // only one child or different children
 //                return false;
 //            }
 //
