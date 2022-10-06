@@ -1,0 +1,53 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    List<List<Integer>> list;
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        
+        list=new ArrayList<>();
+        
+        pathSumList(root,new ArrayList<>(),targetSum);
+        
+        return list;
+        
+        
+        
+    }
+    
+    public void pathSumList(TreeNode root,List<Integer> list1,int targetSum)
+    {
+        if(root==null) return;
+
+        list1.add(root.val);
+        targetSum-=root.val;
+        if(root.left==null && root.right==null && targetSum==0)
+        {
+            list.add(new ArrayList<>(list1));
+            
+            System.out.println(list);
+        }
+        pathSumList(root.left,list1,targetSum);
+        pathSumList(root.right,list1,targetSum);
+        
+        list1.remove(list1.size()-1);
+    }
+        
+}
+
+// Time Complexity : O(N)
+// Space Complexity : O( H )-- height of tree
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no
