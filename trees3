@@ -1,0 +1,41 @@
+path sum
+
+#tc:O(n)
+#sc:O(n)
+class Solution:        
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
+        if root is None:
+            return []
+        q, paths = deque([(root, targetSum, [])]), []
+        
+        while q:
+            cur, target, path = q.pop()  
+            if not (cur.left or cur.right) and cur.val == target:
+                paths.append(path + [cur.val])
+            else:
+                if cur.left:
+                    q.appendleft((cur.left, target - cur.val, path + [cur.val]))
+                if cur.right:
+                    q.appendleft((cur.right, target - cur.val, path + [cur.val]))
+                                 
+        return paths
+
+
+symmetric tree
+
+#tc: O(n)
+#sc: O(1)
+class Solution:
+	def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+		def sym(le,ri):
+			if not le and not ri:   return 1
+			if le and ri:
+				if le.val!=ri.val:
+					return 0
+				else:
+					return sym(le.right,ri.left) and sym(le.left,ri.right)
+				return 0
+		if not root:
+			return 1
+		return sym(root.left,root.right)
+        
