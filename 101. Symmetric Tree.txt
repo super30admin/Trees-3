@@ -1,0 +1,23 @@
+class Solution:
+    issym=True
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        if root==None:
+            return True
+        ls=[]
+        ls.append(root.left)
+        ls.append(root.right)
+        while(len(ls)>0):
+            l=ls.pop(0)
+            r=ls.pop(0)
+            if(l==None and r==None):
+                continue
+            if(l==None or r==None or l.val!=r.val):
+                return False
+            ls.append(l.left)
+            ls.append(r.right)
+            ls.append(l.right)
+            ls.append(r.left)
+        return True
+
+TC-O(n)
+SC-O(n)
