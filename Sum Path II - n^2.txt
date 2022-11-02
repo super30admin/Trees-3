@@ -1,0 +1,29 @@
+Time : O(n^2)
+Space : O(n)
+
+class Solution:   
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
+        if not root:
+            return []
+        self.result = []
+        self.helper(root, root.val,[root.val], targetSum)
+        return self.result
+        
+    def helper(self, root, currSum, temp, targetSum):
+        #base
+        if root == None:
+            return 
+            
+        #logic
+        if root.left is not None:
+            self.helper(root.left, currSum + root.left.val, temp + [root.left.val] , targetSum)
+            
+        if root.left == None and root.right == None:
+            if targetSum == currSum:
+                print(temp)
+                self.result.append(temp)
+                return
+            
+        if root.right is not None:
+             self.helper(root.right, currSum + root.right.val, temp + [root.right.val], targetSum)
+            
