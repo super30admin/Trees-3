@@ -1,0 +1,23 @@
+class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        if root == None:
+            return True
+        
+        TreeStack = []
+        TreeStack.append(root.left)
+        TreeStack.append(root.right)
+        
+        while(len(TreeStack)!=0):
+            right = TreeStack.pop()
+            left = TreeStack.pop()
+            if left == None and right == None:
+                continue
+            if left == None or right == None or left.val != right.val:
+                return False
+            
+            TreeStack.append(left.left)
+            TreeStack.append(right.right)
+            TreeStack.append(left.right)
+            TreeStack.append(right.left)
+            
+        return True
