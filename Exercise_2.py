@@ -1,27 +1,34 @@
 # Time Complexity: O(n)
-# Space Complexity: O(1)
+# Space Complexity: O(h)-> height of the tree
 # Did this code successfully run on Leetcode: Yes
 # Any problem you faced while coding this : No
 
 
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution(object):
-    def productExceptSelf(self, nums):
+    def isSymmetric(self, root):
         """
-        :type nums: List[int]
-        :rtype: List[int]
+        :type root: TreeNode
+        :rtype: bool
         """
-        res = [0] * len(nums)
-        rp = 1
-        res[0] = 1
+        if not root:
+            return
         
-        for i in range(1, len(nums)):
-            rp = rp*nums[i-1]
-            res[i] = rp
+        def helper(t1, t2):
+            if not t1 and not t2:
+                return True
             
-        rp = 1
-        
-        for i in range(len(nums)-2, -1, -1):
-            rp = rp * nums[i+1]
-            res[i] = res[i] * rp
+            if (t1 and not t2) or (t2 and not t1):
+                return False
             
-        return res          
+            if t1.val!=t2.val:
+                return False
+
+            return helper(t1.left, t2.right) and helper(t1.right, t2.left)
+            
+        return helper(root.left, root.right)         
