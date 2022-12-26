@@ -1,5 +1,5 @@
-// Time Complexity: O(2^n)
-// Space Complexity: O(logn)
+// Time Complexity: O(n^2)
+// Space Complexity: O(n^2)
 class Solution {
 List<List<Integer>> paths = new ArrayList<>(); 
     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
