@@ -1,5 +1,5 @@
-// Time Complexity: O(2^n)
-// Space Complexity: O(log n)
+// Time Complexity: O(n^2)
+// Space Complexity: O(n^2)
 class Solution {
     public boolean isSymmetric(TreeNode root) {
         return check(root.left,root.right);
