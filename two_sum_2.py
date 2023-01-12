@@ -1,5 +1,5 @@
 # Time Complexity :
-# O(N)  - Size of the Truee
+# O(N)  - Size of the Tree
 
 # Space Complexity :
 # O(N)
