@@ -1,0 +1,56 @@
+// Time Complexity : o( n)
+// Space Complexity : o(h)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no
+
+
+// Your code here along with comments explaining your approach
+/*
+*  Traverse through the tree and Keep sumSoFar for each node and the path taken to reach this node
+*  if the sum equals target sum and then add the path to result
+*
+* */
+
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+
+    public List<List<Integer>>  result = new ArrayList<>();
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        helper(root, targetSum, 0, new ArrayList<>());
+        return result;
+    }
+
+    void helper(TreeNode root,  int targetSum, int curr, List<Integer> temp){
+        if(root == null){
+            return;
+        }
+        curr += root.val;
+        temp.add(root.val);
+        if(root.left== null && root.right== null && curr == targetSum){
+            result.add(new ArrayList<>(temp));
+
+        }
+
+        helper(root.left, targetSum, curr, temp );
+        helper(root.right, targetSum, curr, temp);
+        temp.remove(temp.size()-1);
+
+
+    }
+}
