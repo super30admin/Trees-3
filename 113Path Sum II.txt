@@ -1,0 +1,62 @@
+113. Path Sum II
+
+
+//TC O(n*h)  SC O(n*h)
+class Solution {
+    List<List<Integer>> result;
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        this.result=new ArrayList<>();
+        helper(root,0,targetSum,new ArrayList<>());
+        return result;
+    }
+    private void helper(TreeNode root,int curSum,int targetSum,List<Integer>path){
+        //base
+        if(root==null)return;
+        //logic
+    curSum+=root.val;
+    List<Integer>newArr=new ArrayList<>(path);
+    newArr.add(root.val);
+    if(root.left==null && root.right==null){
+        if(curSum==targetSum){
+            result.add(newArr);
+        }
+    }
+    helper(root.left,curSum,targetSum,newArr);
+    helper(root.right,curSum,targetSum,newArr);
+
+
+    }
+}
+
+
+
+
+ /*
+ //in this solution we are creating a new ArrayList at each step
+class Solution {
+    List<List<Integer>> result;
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        this.result=new ArrayList<>();
+        helper(root,0,targetSum,new ArrayList<>());
+        return result;
+    }
+    private void helper(TreeNode root,int curSum,int targetSum,List<Integer>path){
+        //base
+        if(root==null)return;
+
+        //logic
+    curSum+=root.val;
+    path.add(root.val);
+    if(root.left==null && root.right==null){
+        if(curSum==targetSum){
+            result.add(path);
+        }
+    }
+    helper(root.left,curSum,targetSum,new ArrayList(path));
+    helper(root.right,curSum,targetSum,new ArrayList(path));
+
+
+    }
+}
+
+*/

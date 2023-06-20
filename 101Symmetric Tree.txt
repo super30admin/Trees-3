@@ -1,0 +1,22 @@
+101. Symmetric Tree
+
+class Solution 
+{//dfs
+    public boolean isSymmetric(TreeNode root)
+    {//Driver Method 
+        if(root==null)
+            return false;
+        return IsSymmetric(root.left,root.right);//caling the function 
+    }
+    public boolean IsSymmetric(TreeNode left1,TreeNode right1) 
+    {
+        if(left1== null && right1== null)//if both are null 
+            return true;
+        else if(left1== null || right1== null)//if one  of them is null then not symmetric 
+            return false;
+        else if(left1.val != right1.val)//if their values are not equal 
+            return false;
+        else
+            return IsSymmetric(left1.left,right1.right)&&IsSymmetric(left1.right,right1.left);//handiling both the cases of left right and right left 
+    }
+}
