@@ -15,6 +15,9 @@ if both the nodes are none means we have encountered the end, but still symmetri
 
 # Symmetric Tree
 
+# Approach - 1
+# Recursion
+
 # Definition for a binary tree node.
 # class TreeNode(object):
 #     def __init__(self, val=0, left=None, right=None):
@@ -35,4 +38,39 @@ class Solution(object):
             return False
         return (left.val==right.val and self.helper(left.left,right.right) and self.helper(left.right,right.left))
         
+
+
+
+# Approach - 2
+# BFS
+
+class Solution(object):
+    def isSymmetric(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        if not root:
+            return True
+        q=collections.deque()
+        # if root.left:
+        q.append(root.left)
+        # if root.right:
+        q.append(root.right)
         
+        while q:
+            left=q.popleft()
+            right=q.popleft()
+            if left==None and right==None:
+                continue
+            if left==None or right==None:
+                return False
+            if left.val!=right.val:
+                return False
+            q.append(left.left)
+            q.append(right.right)
+            q.append(left.right)
+            q.append(right.left)
+
+
+        return True
