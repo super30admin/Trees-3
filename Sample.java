@@ -83,6 +83,10 @@
 // }
 
 //solution with Path, targetSum, CurSum variable in global scope
+//Approach: here we are need List of list as a result, so basically a pointer reference is required. if we keep on making changes to the current list after being added to result, we are making changes to the reference pointer, so at the end, it will be changing elements from out result added list too.
+// to tackle this issue, anytime we satisfy targetSum conditions, we add into result as a new reference so that we dont make recurrent changes to the same list 
+// Also when we are coming back when our targetSum conditions does not satisfy, we still have that leaf node in list when we think recursion can handle it. recursion cannt internally handle data pointers but datatypes like int, boolean can be internally handled through local scope.
+// arrays, arraylist will act as a global scope pointer even. hence we remove the current leaf node from list when we go back in the tree. 
 class Solution {
     List<List<Integer>> res;
     List<Integer> path;
@@ -121,6 +125,9 @@ class Solution {
 
 
 // Your code here along with comments explaining your approach
+//Approach: here we want leftsubtree to be exact mirror of right sub tree-> left child of left sub tree is equal to right child in right subtree and vice versa
+// We try to traverse recursively in dfs approach to left.left and right.right check , also left.right and right.left check. 
+// BFS Approach: here we want to check level order traversal is a palindrome or not, as the parents and children are both mirror images, they should also be palindromes.
 class Solution {
     //Non Optimal Solution -> inorder should be a palindrome. 
     // public boolean isSymmetric(TreeNode root) {
