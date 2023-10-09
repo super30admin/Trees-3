@@ -1,5 +1,6 @@
 # TC: O(n2)
 # SC: O(n)
+#approch used - recursive approach with Backtracking 
 
 # Definition for a binary tree node.
 # class TreeNode:
