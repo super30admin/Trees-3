@@ -90,3 +90,26 @@ class Solution {
 
     }
 }
+
+
+// ## Problem2 (https://leetcode.com/problems/symmetric-tree/)
+// Time Complexity : O(n)
+// Space Complexity : O(h)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : I didnt face any problem while coding this.
+
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        return helper(root.left, root.right);
+    }
+    private boolean helper(TreeNode left, TreeNode right){
+        if(left == null && right == null){
+            return true;
+        }
+        if(left == null || right == null){
+            return false;
+        }
+        return (left.val == right.val && helper(left.left, right.right) && helper(left.right, right.left));
+
+    }
+}
