@@ -43,7 +43,7 @@ public class Solution
             helper(root.right, targetSum, currSum, path);
 
             //backtrack
-            path.Remove(path[path.Count - 1]);
+            path.RemoveAt(path.Count - 1);
 
         }
     }
