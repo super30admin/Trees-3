@@ -1,0 +1,32 @@
+#time complexity: O(n)
+#space complexity: O(n)
+#did it run on leetcode: yes
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
+        if not root: return None
+        res = []
+        path = deque()
+
+        def dfs(node,s):
+            path.append(node.val)
+            s+=node.val
+
+            if not node.left and not node.right and s==targetSum:
+                res.append(list(path))
+            if node.left:
+                dfs(node.left, s)
+            if node.right:
+                dfs(node.right, s)
+            s-=node.val
+            path.pop()
+
+        dfs(root,0)
+        return res
+
+        
