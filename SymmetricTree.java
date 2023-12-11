@@ -1,3 +1,5 @@
+//T.C O(n) //Number of nodes
+//S.C O(h) //recursive stack space will be height of the tree
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
