@@ -1,0 +1,34 @@
+#Symmetric Tree
+
+# Tc: O(n)
+# Sc : O(h)
+
+from queue import Queue
+
+class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        if not root:
+            return True
+        
+        q = Queue()
+        q.put(root)
+        q.put(root)
+
+        while not q.empty():
+            left = q.get()
+            right = q.get()
+
+            if not left and not right:
+                continue
+            if not left or not right:
+                return False
+            if left.val != right.val:
+                return False
+
+            # Enqueue the next level nodes in a symmetric way
+            q.put(left.left)
+            q.put(right.right)
+            q.put(left.right)
+            q.put(right.left)
+
+        return True
