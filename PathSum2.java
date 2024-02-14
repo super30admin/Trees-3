@@ -4,6 +4,9 @@
 // Any problem you faced while coding this :
 
 // Your code here along with comments explaining your approach
+// Maintaining a single array to keep track while DFS; add to array when you start processing a node
+// and delete from it when you have processed it (it's no longer part of the path). At leaf nodes,
+// check if sum = targetSum and if yes, append it to the result.
 
 import java.util.ArrayList;
 import java.util.List;
