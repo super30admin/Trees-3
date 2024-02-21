@@ -1,11 +1,13 @@
 // Time Complexity : O(n) [Number of Nodes in the tree]
 // Space Complexity : O(h) [For recursive stack the memory if equal to the height of the tree]
 // Did this code successfully run on Leetcode : Yes
-// Any problem you faced while coding this : Yes, I have implemented another approach mentioned 
+// Any problem you faced while coding this : Yes, I have implemented another approach [isSymmetric2()]mentioned 
 //                                           below, can TA look in to it once and provide any comments
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 class Solution {
     List<Integer> arrList;
@@ -16,6 +18,8 @@ class Solution {
         if (root == null) {
             return true;
         }
+
+        // return helperQueue(root);
         return isMirror(root.left, root.right);
     }
 
@@ -38,6 +42,37 @@ class Solution {
 
         //Check the left child of left with right child of right and check right child of left with left child of right
         return isMirror(left.left, right.right) && isMirror(left.right, right.left);
+    }
+
+    private boolean helperQueue(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root.left);
+        queue.offer(root.right);
+
+        while(!queue.isEmpty()) {
+            TreeNode leftNode = queue.poll();
+            TreeNode rightNode = queue.poll();
+            if(leftNode == null && rightNode == null) {
+                continue;
+            }
+
+            if(leftNode == null || rightNode == null || leftNode.val != rightNode.val) {
+                return false;
+            }
+
+            queue.offer(rightNode.right);
+            queue.offer(leftNode.left);
+
+            queue.offer(rightNode.left);
+            queue.offer(leftNode.right);
+        }
+
+        return true;
+        
     }
 
     /*
