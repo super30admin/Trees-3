@@ -1,0 +1,33 @@
+# Time Complexity : O(n)
+# Space Complexity : O(h)
+# Did this code successfully run on Leetcode : Yes
+# Any problem you faced while coding this : No
+
+
+# Your code here along with comments explaining your approach
+from collections import Optional, TreeNode, List
+class Solution:
+    result = []
+
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
+        if root is None:
+            return []
+        self.result = []
+        self.find_paths(root, targetSum, [])
+        return self.result
+
+    def find_paths(self, root, target, cur_path):
+        if root is None:
+            return
+
+        if root.left is None and root.right is None:
+            temp = cur_path.copy()
+            temp.append(root.val)
+            if target == sum(temp):
+                self.result.append(temp)
+            return
+
+        cur_path.append(root.val)
+        self.find_paths(root.left, target, cur_path)
+        self.find_paths(root.right, target, cur_path)
+        cur_path.pop()
