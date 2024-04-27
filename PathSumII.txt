@@ -1,0 +1,85 @@
+Time Complexity: O(n*m), n length of tree ; h being the height. At each and every row we are copying h elements to new list. (copy also takes time)
+Space Complexity: O(n*m)
+Challenge: To identify that we should create a new arraylist to avoid entire elements in the tree as an output. 
+In recusion always original reference is passed in the method call and hence a new array list is created with old elements and 
+then new value is added on top of it.
+Approach: Make a Depth first traversal(DFS) on the tree, when left and right nodes of a node are null and tragetSum is attained then add it to output array.
+Keep summing the node values and pass it to next traversal.
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */ 
+class Solution {
+    List<List<Integer>> paths=new ArrayList<>();
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {    
+            calculatePathSum(root, targetSum,0, new ArrayList<>());
+            return paths;
+    }
+
+    public void calculatePathSum(TreeNode root, int targetSum, int currSum, List<Integer> arrayList){
+            if(root==null) return;                                   
+            currSum+=root.val;
+            //Instead of modifying the original array reference , create a new array
+            List<Integer> values=new ArrayList<Integer>(arrayList);
+            values.add(root.val);
+            if(root.left==null && root.right==null && targetSum==currSum) {
+                paths.add(new ArrayList<>(values));
+            } 
+            calculatePathSum(root.left, targetSum, currSum, values);
+            calculatePathSum(root.right, targetSum, currSum, values);           
+    }
+}
+
+/***** Optimized Approach *******/
+Time complexity: O(n)
+Space complexity: O(n)
+Approach: Back Tracking is way to remove the traversed values. If we remove already traversed values we will avoid 
+1.Additional space for a new arraylist.
+2.Time complexity to copy elements from one array to another.
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */ 
+class Solution {
+    List<List<Integer>> paths=new ArrayList<>();
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {    
+            calculatePathSum(root, targetSum,0, new ArrayList<>());
+            return paths;
+    }
+
+    public void calculatePathSum(TreeNode root, int targetSum, int currSum, List<Integer> arrayList){
+            if(root==null) return;                                   
+            currSum+=root.val;
+            arrayList.add(root.val);
+            if(root.left==null && root.right==null && targetSum==currSum) {
+                paths.add(new ArrayList<>(arrayList));
+            } 
+            calculatePathSum(root.left, targetSum, currSum, arrayList);
+            calculatePathSum(root.right, targetSum, currSum, arrayList);
+                       
+            arrayList.remove(arrayList.size()-1);
+    }
+}
