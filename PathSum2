@@ -1,0 +1,33 @@
+T.c --> O(n)
+S.c --> O(h)
+
+class Solution {
+    List<List<Integer>> result = new ArrayList<>();
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+       if(root == null){
+        return result;
+       }
+       List<Integer> result1 = new ArrayList<>();
+       return dfs(root,targetSum,0,result1);
+    }
+    private List<List<Integer>> dfs(TreeNode root, int targetSum, int sum, List<Integer> result1){
+        if(root == null){
+            return result;
+        }
+        result1.add(root.val);   
+                    
+        dfs(root.left,targetSum,sum+root.val,result1);        
+        
+        dfs(root.right,targetSum,sum+root.val,result1);
+        if(root.left == null && root.right == null){
+            if((sum+root.val) == targetSum){ 
+                List<Integer> result2 = new ArrayList<>();
+                result2.addAll(result1);               
+                result.add(result2);                
+            }
+        }       
+        
+        result1.remove(result1.size()-1);
+        return result;
+    }       
+}
