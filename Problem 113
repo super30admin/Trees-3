@@ -1,0 +1,62 @@
+/*
+Time Complexity: O(n)
+Space Complexity: O(n) as all the elements are traverssed here.
+
+LeetCode: Successful
+Runtime: 3 ms, faster than 13.75% of Java online submissions for Path Sum II.
+Memory Usage: 39.6 MB, less than 22.73% of Java online submissions for Path Sum II.
+
+
+Approach:
+
+# take a number.
+# check if root is null, if yes, simply return.
+# if not, add value of root to the number.
+# if now, the number is equal to the sum, then add this list to the result list.
+
+# if not, check with left subtree, and right sub tree recursively and pass new path list to them by making a copy of current path.
+
+
+
+
+*/
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    
+    List<List<Integer>> ls;
+    int summ=0;
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
+        
+        summ=sum;
+        List<Integer> sl= new ArrayList<Integer>();
+        int number=0;
+        ls = new ArrayList<List<Integer>>();
+        helper(root,number,sl);
+        
+        return ls;
+    }
+    
+    
+     void helper(TreeNode root, int number,List<Integer> sl )
+    {
+        if(root==null) return;
+         
+        sl.add(root.val);        
+        number+=root.val;
+        if(root.left==null&&root.right==null&&number==summ) ls.add(sl);
+        helper(root.left,number,new ArrayList<>(sl));
+        helper(root.right,number,new ArrayList<>(sl));
+        
+        return;
+    }
+}
