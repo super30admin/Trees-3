@@ -1,0 +1,36 @@
+// Time Complexity : worst case is O(n)
+// Space Complexity : O(h) where h is the height of the tree
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no
+
+// calculate sum to all the leaves. if a sum is equal to the target, add path to the result
+
+class Solution {
+    List<List<Integer>> result;
+    List<Integer> path;
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        if(root == null) {
+            return new ArrayList<>();
+        }
+        result = new ArrayList<>();
+        path = new ArrayList<>();
+        dfs(root, 0, targetSum);
+        return result;
+    }
+    private void dfs(TreeNode root, int sum, int target) {
+        if(root == null) {
+            return;
+        }
+        sum += root.val;
+        path.add(root.val);
+        if(root.left == null && root.right == null) {
+            if(sum == target) {
+                result.add(new ArrayList<>(path));
+            }
+            // return;
+        }
+        dfs(root.left, sum, target);
+        dfs(root.right, sum, target);
+        path.remove(path.size() - 1);
+    }
+}
