@@ -1,0 +1,65 @@
+#Problem 1
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
+        if root == None:
+            return []
+        
+        self.ret = []
+        self.targetSum = targetSum
+        self.recurse(root, [], 0)
+        return self.ret
+    
+    def recurse(self, root: Optional[TreeNode], path: List[int], currSum: int) -> None:
+        if root == None:
+            return 
+        
+        path.append(root.val)
+        currSum = currSum + root.val
+        if root.left == None and root.right == None and currSum == self.targetSum:
+            self.ret.append([i for i in path])
+        self.recurse(root.left, path, currSum)
+        self.recurse(root.right, path, currSum)
+        path.pop()
+
+
+
+#Problem 2
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        if root == None:
+            return 
+        
+        self.isSymetric = True
+
+        self.recurse(root.left, root.right)
+        return self.isSymetric
+    
+    def recurse(self, left: Optional[TreeNode], right: Optional[TreeNode]) -> None:
+        if left == None and right == None:
+            return
+        if left != None and right == None:
+            self.isSymetric = False
+            return
+        if left == None and right != None:
+            self.isSymetric = False
+            return
+        if left.val != right.val:
+            self.isSymetric = False
+            return 
+        self.recurse(left.left, right.right)
+        self.recurse(left.right, right.left)
+
