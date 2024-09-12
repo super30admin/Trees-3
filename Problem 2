@@ -1,0 +1,25 @@
+
+//Time Complexity : O(n)
+// Space Complexity :O(h)
+// Did this code successfully run on Leetcode :Yes
+// Any problem you faced while coding this :No
+
+class Solution {
+public:
+    bool helper(TreeNode* root1, TreeNode* root2){
+        if(root1==NULL && root2==NULL) return true;
+        if(root1==NULL || root2==NULL || root1->val!=root2->val) return false;
+    
+        bool l = helper(root1->left, root2->right);
+        bool r = helper(root1->right, root2->left);
+        if(l&r) return true;
+        
+        return false;
+    }
+    
+    bool isSymmetric(TreeNode* root) {
+        if(root==NULL) return true;
+        
+        return helper(root->left, root->right);
+    }
+};
