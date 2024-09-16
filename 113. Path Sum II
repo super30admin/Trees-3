@@ -1,0 +1,46 @@
+Time complexity: O(Max depth)
+Space complexity: O(Max depth)
+Did this code submitted successfully on leetcode: Yes 
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
+        
+        List<Integer> currPath = new ArrayList<>();
+        List<List<Integer>> ans = new ArrayList<>();
+        
+        findPaths(root,0,sum,currPath,ans);
+        
+        return ans;
+    }
+    
+    private void findPaths(TreeNode root, int currSum, int target,List<Integer> currPath, List<List<Integer>> ans){
+       
+        //base case
+        if(root==null)
+            return;
+        
+        if(root.left==null && root.right==null){
+            if(currSum+root.val==target){
+                currPath.add(root.val);
+                ans.add(currPath);
+            }
+            return;
+        }
+        
+        //recursion
+        currPath.add(root.val);
+        currSum+=root.val;
+        
+        findPaths(root.left,currSum, target, new ArrayList<>(currPath), ans);
+        findPaths(root.right,currSum, target, new ArrayList<>(currPath), ans);
+    }
+}
