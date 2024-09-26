@@ -1,0 +1,43 @@
+// Time Complexity : O(n)
+// Space Complexity : O(n)
+// Did this code successfully run on Leetcode : Yes 
+// Any problem you faced while coding this : NO
+
+class Solution {
+    /* Recursive  solution 
+    
+    public boolean isSymmetric(TreeNode root) {
+        return check(root, root); // pass the root as two refernce to next function
+    }
+    
+    public boolean check (TreeNode p, TreeNode q){
+        if(p == null && q ==null) return true;  // if both the root values are null return true
+        else if( p == null) return false;      // if any one of them is null return false
+        else if( q == null) return false;
+        else if( p.val != q.val) return false;       // incase if value is not same return false
+        else return check(p.left,q.right) && check(p.right,q.left);  // now check left of tree 1 and right of tree 2 , right of tree 1 and left of tree 2 
+    }
+    
+    */
+    
+    /* Iterative Solution
+    
+    public boolean isSymmetric(TreeNode root) {
+        Queue<TreeNode> q = new LinkedList<>();  // queue to add treenodes
+        q.add(root);   // add root
+        q.add(root);   // add root
+        while (!q.isEmpty()) {
+            TreeNode t1 = q.poll();   // poll one
+            TreeNode t2 = q.poll();   // poll second
+            if (t1 == null && t2 == null) continue;     // if both are null continue
+            if (t1 == null || t2 == null) return false; // if anyone of them is null return false
+            if (t1.val != t2.val) return false;   // if values are not same then return false
+            q.add(t1.left);         // now t1 left
+            q.add(t2.right);        // now t2 right
+            q.add(t1.right);        // now t1 right
+            q.add(t2.left);         // now t2 left
+        }
+        return true;  // by default return true
+    }
+    */
+}
