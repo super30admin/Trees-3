@@ -1,0 +1,17 @@
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        if(root==null) return true;
+        return helper(root.left,root.right);
+    }
+    boolean helper(TreeNode leftSubtree, TreeNode rightSubtree)
+    {
+        if(leftSubtree==null && rightSubtree==null) return true;
+        if(leftSubtree==null || rightSubtree==null) return false;
+        if(leftSubtree.val==rightSubtree.val)
+            return true;
+        if(leftSubtree.val!=rightSubtree.val)
+            return false;
+        //recursively check left and right subtree, I am doing something wrong here, will review it after class
+        return helper(leftSubtree.left,rightSubtree.right);
+    }
+}

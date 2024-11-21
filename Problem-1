@@ -1,0 +1,85 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+//Time: O(n) where n are no of nodes
+//Space: O(1)
+class Solution {
+    List<List<Integer>> result=new ArrayList<List<Integer>>();
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
+        List<Integer> list=new ArrayList<>();
+        if(root==null) return result;
+        
+        helper(root,list, 0, sum);
+        System.out.println(result);
+        return result;
+    }
+    void helper(TreeNode root, List<Integer> list1, int currSum, int sum)
+    {
+        //base case when we return recursive call back to the function who called so when node is null return to prev call in the stack 
+        if(root==null ) return;
+       
+        //maintain current list and current sum at each level
+        list1.add(root.val);
+        currSum+=root.val;
+        //We are writing this condition here so that at last leaf node , it should check its left and right child and if its null, should be able to add paths in result list
+        if(root.left==null && root.right==null)
+        {
+            if(currSum==sum)
+            {
+                //since list1 object going to be changed so add it by making new list here, means copy data in new object and add that object
+              result.add(new ArrayList<>(list1)); 
+            }
+           
+                
+        }
+        helper(root.left, list1, currSum, sum);
+        helper(root.right, list1, currSum, sum);
+        //backtrack, remove last element
+        list1.remove(list1.size()-1);
+        
+    }
+}
+
+//Without backtrack solution
+//Time: O(n) where n are no of nodes
+//Space: O(1)
+class Solution {
+    List<List<Integer>> result=new ArrayList<List<Integer>>();
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
+        List<Integer> list=new ArrayList<>();
+        if(root==null) return result;
+        
+        helper(root,list, 0, sum);
+        System.out.println(result);
+        return result;
+    }
+    void helper(TreeNode root, List<Integer> list1, int currSum, int sum)
+    {
+        //base case when we return recursive call back to the function who called so when node is null return to prev call in the stack 
+        if(root==null ) return;
+       
+        //maintain current list and current sum at each level
+        list1.add(root.val);
+        currSum+=root.val;
+        //We are writing this condition here so that at last leaf node , it should check its left and right child and if its null, should be able to add paths in result list
+        if(root.left==null && root.right==null)
+        {
+            if(currSum==sum)
+            {
+                //since list1 object going to be changed so add it by making new list here, means copy data in new object and add that object
+              result.add((list1)); 
+            }
+           
+                
+        }
+        helper(root.left, new ArrayList<>(list1), currSum, sum);
+        helper(root.right, new ArrayList<>(list1), currSum, sum);
+        
+    }
+}
