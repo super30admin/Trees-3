@@ -5,7 +5,13 @@
  * Problems faced? No
  *
  * Approach:
- *
+ * 1. Use DFS to explore all possible paths from the root to leaf nodes
+ * 2. Maintain a list to store the current path of node values.
+ * 3. Update the curSum at each node by adding the node's value.
+ * 4. At a leaf node, check if curSum equals targetSum. If true, add a copy of the current path (list) to the result.
+ * 5. Recursively explore the left and right subtrees.
+ * 6. Backtracking: Remove the last added node value from the path (list)
+ * after visiting both subtrees to backtrack and explore other paths.
  */
 import java.util.ArrayList;
 import java.util.List;
