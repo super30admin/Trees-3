@@ -1,0 +1,8 @@
+Time Complexity : O(n)
+Space Complexity : O(h)
+Did this code successfully run on Leetcode : Yes
+Any problem you faced while coding this : No
+
+
+Your code here along with comments explaining your approach in three sentences only
+Used pre order traversal to find the paths. Found the sum of the path and also the path from root to the current node. Once the node is leaf, the accumulated list's sum is checked and if it is equal to the target, the list will be pushed to list of lists and so on
