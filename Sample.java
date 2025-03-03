@@ -1,7 +1,13 @@
-// Time Complexity :
-// Space Complexity :
-// Did this code successfully run on Leetcode :
-// Any problem you faced while coding this :
+// Time Complexity : O(N * H) where H is the height of the tree.
+// Space Complexity :O(H)
+// Did this code successfully run on Leetcode :yes
+// Any problem you faced while coding this : no
 
 
-// Your code here along with comments explaining your approach
+
+// Time Complexity : O(N)
+// Space Complexity :O(H)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no
+
+
