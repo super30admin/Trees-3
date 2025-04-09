@@ -1,0 +1,29 @@
+class Solution {
+    List<List<Integer>> pathLists;
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        pathLists = new ArrayList<>();
+        helper(root, new ArrayList<>(), targetSum);
+
+        return  pathLists;
+    }
+    public void helper(TreeNode root, List<Integer> pathValues, int remainingTarget) {
+        //base condition
+        if(root == null ) return ;
+        //logic
+        //root calculation
+        remainingTarget -= root.val;
+        pathValues.add(root.val); 
+        // targetSum decision
+        if( root.left == null && root.right == null){
+            if(remainingTarget == 0){
+                pathLists.add( new ArrayList<>(pathValues)); // pathLists.add(pathValues);
+            }
+        } else {
+            // left 
+            helper(root.left, pathValues, remainingTarget);
+            // right
+            helper(root.right, pathValues, remainingTarget);
+        }
+        pathValues.removeLast();
+    }
+}

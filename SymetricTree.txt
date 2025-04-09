@@ -1,0 +1,21 @@
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        // BFS would give oncosistent results - as it can have the give the order of the level but not th exact parent that it was connected to 
+
+        return helper(root.left,root.right);
+    }
+    private boolean helper(TreeNode lRoot, TreeNode rRoot){
+        //base 
+        if(lRoot == null && rRoot == null) return true;
+
+        if(lRoot == null && rRoot != null) return false;
+        if(lRoot != null && rRoot == null) return false;
+
+        // logic
+        if(lRoot.val != rRoot.val) return false;
+        boolean left = helper(lRoot.left, rRoot.right);
+        boolean right = helper(lRoot.right,rRoot.left);
+        
+        return left && right ;
+    }
+}
