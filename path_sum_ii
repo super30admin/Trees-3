@@ -1,0 +1,108 @@
+# Definition for a binary tree node.
+import copy
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+## Deepcopy
+class Solution1:
+    def pathSum(self, root, targetSum: int) -> list[list[int]]:
+        '''
+        TC: O(n^2)
+        AS: O(n^2)
+        '''
+        result = [] 
+        curr = 0 
+
+        def helper(root, path, curr, targetSum):
+
+            nonlocal result
+            li = copy.deepcopy(path)
+
+            ## base condition 
+            if root is None:
+                return 
+            
+            ## logic
+            curr += root.val
+
+            #### Action
+            li.append(root.val)
+            if root.left is None and root.right is None:
+                if curr == targetSum:
+                    # print(li)
+                    result.append(li)
+
+            #### Recurse
+            helper(root.left, li, curr, targetSum)
+            helper(root.right, li, curr, targetSum)
+
+        helper(root, [], curr, targetSum)
+        return result
+    
+
+## BackTrack and Deepcopy
+class Solution2:
+    def pathSum(self, root, targetSum: int) -> list[list[int]]:
+        '''
+        TC: O(n), where n is the number of nodes
+        AS: O(h), where h is the height of the tree
+        '''
+        result = [] 
+
+        def helper(root, path, curr, targetSum):
+
+            ## base condition 
+            if root is None:
+                return 
+            
+            ## logic
+            curr += root.val
+
+            #### Action
+            path.append(root.val)
+            if root.left is None and root.right is None:
+                if curr == targetSum:
+                    # print(path)
+                    result.append(copy.deepcopy(path))
+
+            #### Recurse
+            helper(root.left, path, curr, targetSum)
+            helper(root.right, path, curr, targetSum)
+
+            #### Backtrack
+            path.pop()
+
+        # helper(root, path, curr, targetSum) ## initially path = [], curr = 0
+        helper(root, [], 0, targetSum)
+        return result
+
+if __name__ == "__main__":
+
+    # root = TreeNode(1)
+    # root.left = TreeNode(2)
+    # root.right = TreeNode(3)   
+
+    root = TreeNode(5)
+    root.left = TreeNode(4)
+    root.right = TreeNode(8)
+
+    root.left.left = TreeNode(11) 
+    root.left.left.left = TreeNode(7)
+    root.left.left.right = TreeNode(2) 
+
+    root.right.left = TreeNode(13)
+    root.right.right = TreeNode(4)
+
+    root.right.right.left = TreeNode(5)
+    root.right.right.right = TreeNode(1)
+
+    # s = Solution1()
+    # targetSum = 22
+    # print(s.pathSum(root,targetSum))
+
+    s = Solution2()
+    targetSum = 22
+    print(s.pathSum(root,targetSum))
