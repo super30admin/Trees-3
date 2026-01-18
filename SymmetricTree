@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool isSymmetric(TreeNode* root) {
+        queue<TreeNode*> que;
+
+        que.push(root);
+        que.push(root);
+
+        while (!que.empty()) {
+            TreeNode* t1 = que.front();
+            que.pop();
+
+            TreeNode* t2 = que.front();
+            que.pop();
+
+            if (t1 == nullptr && t2 == nullptr) continue;
+            if (t1 == nullptr || t2 == nullptr) return false;
+            if (t1->val != t2->val) return false;
+
+            que.push(t1->left);
+            que.push(t2->right);
+
+            que.push(t1->right);
+            que.push(t2->left);
+        }
+
+        return true;
+    }
+};
