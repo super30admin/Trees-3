@@ -1,9 +1,7 @@
-// Did this code successfully run on Leetcode : Yes 
-// Any problem you faced while coding this : No
-
-//Time Complexity : O(n) since we are through all nodes of the tree.
-//Space Complexity: O(1) since we are not taking any extra space 
-class Solution {
+//Approach: Using recursion we can check if the left value is not equal to right val, then return else or else the left and right subtrees are symmetric.
+//Time Complexity : O(n)
+//Space Complexity: O(1)
+class SymetricTree {
     public boolean isSymmetric(TreeNode root)
     {
         if(root == null) return false;
@@ -17,10 +15,10 @@ class Solution {
 
         //If any of the left or right nodes is null, that means the other part is not null and so not symmetric
         if(left == null || right == null) return false;
-        
-        //logic
+
+        //left value when equals to right value then it is considered symetric
         if(left.val != right.val) return false;
-        
+
         return helper(left.left, right.right) && helper(left.right, right.left);
     }
 }
